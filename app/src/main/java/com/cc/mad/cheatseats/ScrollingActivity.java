@@ -21,7 +21,9 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 public class ScrollingActivity extends AppCompatActivity {
 
@@ -30,11 +32,13 @@ public class ScrollingActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<SpaceCardItem> spaces = new ArrayList<>();
     private Context mContext;
+
     // For filtering
-    private boolean hasGoodCellular;
-    private boolean isQuiet;
-    private boolean allowsFood;
-    private boolean hasOutlets;
+    private boolean cellularFilterEnabled;
+    private boolean quietFilterEnabled;
+    private boolean foodFilterEnabled;
+    private boolean outletFilterEnabled;
+
     private Crowdedness crowdedness;
 
     Dialog myDialog;
@@ -71,7 +75,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
         mainStacksFloor1 = new FloorItem();
         mainStacksFloor1.setName("Level B");
-        mainStacksFloor1.setHasGoodCellular(true);
+        mainStacksFloor1.setHasGoodCellular(false);
         mainStacksFloor1.setQuiet(true);
         mainStacksFloor1.setAllowsFood(false);
         mainStacksFloor1.setHasOutlets(true);
@@ -238,9 +242,11 @@ public class ScrollingActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     public void ShowPopup(View v) {
         TextView txtclose;
-        Button filter, food, cancel;
+        final ToggleButton cellular, quiet, food, outlets;
+        Button filter, reset;
         myDialog.setContentView(R.layout.content_custompopup);
         txtclose = (TextView) myDialog.findViewById(R.id.txtclose);
         txtclose.setOnClickListener(new View.OnClickListener() {
@@ -249,13 +255,55 @@ public class ScrollingActivity extends AppCompatActivity {
                 myDialog.dismiss();
             }
         });
-        food = (Button) myDialog.findViewById(R.id.food); // if we use buttons add them like this and add on onClickListener like below using helpers below
-        food.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                foodSetting();
+
+        cellular = (ToggleButton) myDialog.findViewById(R.id.cellular); // if we use buttons add them like this and add on onClickListener like below using helpers below
+        cellular.setChecked(cellularFilterEnabled);
+        cellular.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    cellularFilterEnabled = true;
+                } else {
+                    cellularFilterEnabled = false;
+                }
             }
         });
+
+        quiet = (ToggleButton) myDialog.findViewById(R.id.quiet);
+        quiet.setChecked(quietFilterEnabled);
+        quiet.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    quietFilterEnabled = true;
+                } else {
+                    quietFilterEnabled = false;
+                }
+            }
+        });
+
+        food = (ToggleButton) myDialog.findViewById(R.id.food);
+        food.setChecked(foodFilterEnabled);
+        food.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    foodFilterEnabled = true;
+                } else {
+                    foodFilterEnabled = false;
+                }
+            }
+        });
+
+        outlets = (ToggleButton) myDialog.findViewById(R.id.outlets);
+        outlets.setChecked(outletFilterEnabled);
+        outlets.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    outletFilterEnabled = true;
+                } else {
+                    outletFilterEnabled = false;
+                }
+            }
+        });
+
         filter = (Button) myDialog.findViewById(R.id.filter);
         filter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -264,8 +312,8 @@ public class ScrollingActivity extends AppCompatActivity {
                 myDialog.dismiss();
             }
         });
-        cancel = (Button) myDialog.findViewById(R.id.cancel);
-        cancel.setOnClickListener(new View.OnClickListener() {
+        reset = (Button) myDialog.findViewById(R.id.reset);
+        reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fillSpaceCards();
@@ -283,7 +331,7 @@ public class ScrollingActivity extends AppCompatActivity {
             ArrayList<FloorItem> filteredFloors = new ArrayList<>();
             filteredSpace.setFloors(filteredFloors);
             for (FloorItem floor : space.getFloors()) {
-                if (this.allowsFood == floor.allowsFood()) { //replace inside of if statement with the filter function below @303
+                if (passesFilter(floor)) {
                     filteredFloors.add(floor);
                 }
             }
@@ -300,28 +348,43 @@ public class ScrollingActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    private boolean filter (FloorItem floor) { // filter function that should replace the if statement @286
-        if (this.allowsFood == floor.allowsFood() && this.hasGoodCellular == floor.hasGoodCellular()
-                && this.isQuiet == floor.isQuiet() && this.hasOutlets == floor.hasOutlets()) {
-            return true;
+    private boolean passesFilter (FloorItem floor) {
+
+        Boolean passes = true;
+
+        if (cellularFilterEnabled) {
+            passes &= floor.hasGoodCellular();
         }
-        return false;
+
+        if (quietFilterEnabled) {
+            passes &= floor.isQuiet();
+        }
+
+        if (foodFilterEnabled) {
+            passes &= floor.allowsFood();
+        }
+
+        if (outletFilterEnabled) {
+            passes &= floor.hasOutlets();
+        }
+
+        return passes;
     }
 
-    private void foodSetting () {
-        allowsFood = !allowsFood;
+    private void toggleCellularFilter () {
+        cellularFilterEnabled = !cellularFilterEnabled;
     }
 
-    private void cellularSetting () {
-        hasGoodCellular = !hasGoodCellular;
+    private void toggleQuietFilter () {
+        quietFilterEnabled = !quietFilterEnabled;
     }
 
-    private void noiseSetting () {
-        isQuiet = !isQuiet;
+    private void toggleFoodFilter () {
+        foodFilterEnabled = !foodFilterEnabled;
     }
 
-    private void outletSetting () {
-        hasOutlets = !hasOutlets;
+    private void toggleOutletFilter () {
+        outletFilterEnabled = !outletFilterEnabled;
     }
 
     private void crowdedSetting () {
