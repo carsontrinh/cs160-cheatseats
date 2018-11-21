@@ -99,15 +99,15 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
         @Override
         public void onClick(View view) {
             System.out.println("CLICKED");
-            textView_parentName = itemView.findViewById(R.id.space_name);
-            if (textView_parentName.getId() == R.id.space_name) {
+            textView_parentName = view.findViewById(R.id.space_name);
+            if (textView_parentName != null && textView_parentName.getId() == R.id.space_name) {
                 if (linearLayout_childItems.getVisibility() == View.VISIBLE) {
                     linearLayout_childItems.setVisibility(View.GONE);
                 } else {
                     linearLayout_childItems.setVisibility(View.VISIBLE);
                 }
             } else {
-                TextView textViewClicked = (TextView) textView_parentName;
+                TextView textViewClicked = (TextView) view;
                 Toast.makeText(context, "" + textViewClicked.getText().toString(), Toast.LENGTH_SHORT).show();
             }
         }
