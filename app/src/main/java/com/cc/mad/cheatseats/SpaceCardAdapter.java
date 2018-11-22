@@ -106,7 +106,7 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
                 textView.setGravity(Gravity.LEFT);
 
                 LinearLayout.LayoutParams layoutParamsFloorItems = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                linearLayout_floorItems.addView(textView, layoutParamsFloorItems);
+                linearLayout_floorItems.addView(textView, 0);
 
 //                TextView textView2 = new TextView(context);
 //                textView2.setId(indexView + 100);
@@ -122,28 +122,28 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
                 img_cellular.setPadding(64, 24, 0, 24);
                 img_cellular.setBackgroundResource(R.drawable.ic_round_network_cell_24px);
                 img_cellular.setColorFilter(Color.parseColor("#2F80ED"));
-                linearLayout_floorItems.addView(img_cellular, layoutParamsFloorItems);
+                linearLayout_floorItems.addView(img_cellular, 1);
 
                 img_noise = new ImageView(context);
                 img_noise.setId((int) 2);
                 img_noise.setPadding(64, 24, 0, 24);
                 img_noise.setBackgroundResource(R.drawable.ic_round_volume_off_24px);
                 img_noise.setColorFilter(Color.parseColor("#2F80ED"));
-                linearLayout_floorItems.addView(img_noise, layoutParamsFloorItems);
+                linearLayout_floorItems.addView(img_noise, 2);
 
                 img_food = new ImageView(context);
                 img_food.setId((int) 3);
                 img_food.setPadding(64, 24, 0, 24);
                 img_food.setBackgroundResource(R.drawable.ic_round_fastfood_24px);
                 img_food.setColorFilter(Color.parseColor("#2F80ED"));
-                linearLayout_floorItems.addView(img_food, layoutParamsFloorItems);
+                linearLayout_floorItems.addView(img_food, 3);
 
                 img_power = new ImageView(context);
                 img_power.setId((int) 4);
                 img_power.setPadding(64, 24, 0, 24);
                 img_power.setBackgroundResource(R.drawable.ic_round_power_24px);
                 img_power.setColorFilter(Color.parseColor("#2F80ED"));
-                linearLayout_floorItems.addView(img_power, layoutParamsFloorItems);
+                linearLayout_floorItems.addView(img_power, 4);
 
 
 
