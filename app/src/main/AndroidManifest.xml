@@ -22,7 +22,8 @@
         <activity
             android:name=".custompopup"
             android:label="@string/title_activity_custompopup"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".FloorViewActivity"></activity>
     </application>
 
 </manifest>

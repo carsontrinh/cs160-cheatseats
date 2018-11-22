@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:animateLayoutChanges="true"
+            android:background="@drawable/floor_border"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+
+            <TextView
+                android:id="@+id/rating_prompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Already here? Tell us how crowded it is!"
+                android:textSize="12sp"
+                android:textStyle="" />
+
+            <ImageView
+                android:id="@+id/expand_collapse"
+                android:layout_width="24dp"
+                android:layout_height="18dp"
+                android:layout_alignParentEnd="true"
+                android:clickable="true"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/expand" />
+
+            <ImageView
+                android:id="@+id/rate_low"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rating_prompt"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginBottom="24dp"
+                android:layout_toEndOf="@+id/rate_medium"
+                app:srcCompat="@drawable/crowded_low" />
+
+            <ImageView
+                android:id="@+id/rate_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rating_prompt"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="36dp"
+                app:srcCompat="@drawable/crowded_medium" />
+
+            <ImageView
+                android:id="@+id/rate_high"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rating_prompt"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="48dp"
+                android:layout_toStartOf="@+id/rate_medium"
+                app:srcCompat="@drawable/crowded_high" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
