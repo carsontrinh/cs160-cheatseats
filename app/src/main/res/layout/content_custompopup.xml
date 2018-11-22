@@ -44,7 +44,8 @@
             android:textOff="Cell Reception"
             android:textOn="Cell Reception"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/toggle_color" />
 
         <ToggleButton
             android:id="@+id/quiet"
@@ -58,7 +59,8 @@
             android:textOff="Quiet"
             android:textOn="Quiet"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cellular" />
+            app:layout_constraintTop_toBottomOf="@+id/cellular"
+            android:textColor="@color/toggle_color" />
 
         <ToggleButton
             android:id="@+id/food"
@@ -71,7 +73,8 @@
             android:textOff="Allows Food"
             android:textOn="Allows Food"
             app:layout_constraintBaseline_toBaselineOf="@+id/quiet"
-            app:layout_constraintStart_toEndOf="@+id/quiet" />
+            app:layout_constraintStart_toEndOf="@+id/quiet"
+            android:textColor="@color/toggle_color" />
 
         <ToggleButton
             android:id="@+id/outlets"
@@ -84,7 +87,8 @@
             android:textOff="Outlets"
             android:textOn="Outlets"
             app:layout_constraintBaseline_toBaselineOf="@+id/cellular"
-            app:layout_constraintStart_toEndOf="@+id/cellular" />
+            app:layout_constraintStart_toEndOf="@+id/cellular"
+            android:textColor="@color/toggle_color" />
 
         <Button
             android:id="@+id/filter"
