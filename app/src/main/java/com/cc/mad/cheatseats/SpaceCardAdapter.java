@@ -55,8 +55,74 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
             LinearLayout currentLinearLayout = (LinearLayout) holder.linearLayout_spaceItems.getChildAt(textViewIndex);
             TextView currentFloorTextView = (TextView) currentLinearLayout.getChildAt(0);
             currentFloorTextView.setText(currentItem.getFloors().get(textViewIndex).getName());  // TODO
+        }
+
+        Context context2 = holder.context;
+
+        for (int indexView = 0; indexView < noOfChild; indexView++) {
+
+            LinearLayout linearLayout_floorItems = (LinearLayout) holder.linearLayout_spaceItems.getChildAt(indexView);
+
+            ImageView img_cellular, img_noise, img_food, img_power;
+
+            boolean cellular, noise, food, power;
+            cellular = noise = food = power = false;
+            int index = 1;
+
+            SpaceCardItem currentSpace = cardList.get(i);
+
+            FloorItem floor = currentSpace.getFloors().get(indexView);
+
+            System.out.println("FUUUU");
+            System.out.println(currentSpace.getSpaceName());
+            System.out.println(floor.getName());
+
+            cellular = floor.hasGoodCellular();
+            noise = floor.isQuiet();
+            food = floor.allowsFood();
+            power = floor.hasOutlets();
+
+            if (cellular) {
+                img_cellular = new ImageView(context2);
+                img_cellular.setId((int) 1);
+                img_cellular.setPadding(24, 24, 0, 24);
+                img_cellular.setBackgroundResource(R.drawable.ic_round_network_cell_24px);
+                img_cellular.setColorFilter(Color.parseColor("#2F80ED"));
+                linearLayout_floorItems.addView(img_cellular, index);
+                index++;
+            }
+
+            if (noise) {
+                img_noise = new ImageView(context2);
+                img_noise.setId((int) 2);
+                img_noise.setPadding(24, 24, 0, 24);
+                img_noise.setBackgroundResource(R.drawable.ic_round_volume_off_24px);
+                img_noise.setColorFilter(Color.parseColor("#2F80ED"));
+                linearLayout_floorItems.addView(img_noise, index);
+                index++;
+            }
+
+            if (food) {
+                img_food = new ImageView(context2);
+                img_food.setId((int) 3);
+                img_food.setPadding(24, 24, 0, 24);
+                img_food.setBackgroundResource(R.drawable.ic_round_fastfood_24px);
+                img_food.setColorFilter(Color.parseColor("#2F80ED"));
+                linearLayout_floorItems.addView(img_food, index);
+                index++;
+            }
+
+            if (power) {
+                img_power = new ImageView(context2);
+                img_power.setId((int) 4);
+                img_power.setPadding(24, 24, 0, 24);
+                img_power.setBackgroundResource(R.drawable.ic_round_power_24px);
+                img_power.setColorFilter(Color.parseColor("#2F80ED"));
+                linearLayout_floorItems.addView(img_power, index);
+            }
 
         }
+
     }
 
     @Override
@@ -72,8 +138,10 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
         private LinearLayout linearLayout_spaceItems;
 
         SpaceCardViewHolder (@NonNull View itemView) {
+
             super(itemView);
             context = itemView.getContext();
+
             textView_parentName = itemView.findViewById(R.id.space_name);
             textView_parentType = itemView.findViewById(R.id.space_type);
 
@@ -108,85 +176,6 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
 
                 LinearLayout.LayoutParams layoutParamsFloorItems = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 linearLayout_floorItems.addView(textView, 0);
-
-//                TextView textView2 = new TextView(context);
-//                textView2.setId(indexView + 100);
-//                System.out.println("THE ID I MAKE:::::::: " + (indexView + 100));
-//                textView2.setPadding(64, 24, 0, 24);
-//                textView2.setGravity(Gravity.RIGHT);
-//                textView2.setBackground(ContextCompat.getDrawable(context, R.drawable.background_sub_module_text));
-
-                ImageView img_cellular, img_noise, img_food, img_power;
-
-                boolean cellular, noise, food, power;
-                cellular = noise = food = power = false;
-                int index = 1;
-                SpaceCardItem currentSpace = null;
-
-
-                for (int i = 0; i < cardList.size(); i++) {
-                    if (cardList.get(i).getSpaceName().equals(textView_parentName.getText().toString())) {
-                        currentSpace = cardList.get(i);
-                        break;
-                    } else {
-                        currentSpace = null;
-                    }
-                }
-
-                if (currentSpace != null && indexView < currentSpace.getFloors().size()) {
-
-                    FloorItem floor = currentSpace.getFloors().get(indexView);
-
-                    System.out.println("FUUUU");
-                    System.out.println(currentSpace.getSpaceName());
-                    System.out.println(floor.getName());
-
-                    cellular = floor.hasGoodCellular();
-                    noise = floor.isQuiet();
-                    food = floor.allowsFood();
-                    power = floor.hasOutlets();
-
-                    if (cellular) {
-                        img_cellular = new ImageView(context);
-                        img_cellular.setId((int) 1);
-                        img_cellular.setPadding(24, 24, 0, 24);
-                        img_cellular.setBackgroundResource(R.drawable.ic_round_network_cell_24px);
-                        img_cellular.setColorFilter(Color.parseColor("#2F80ED"));
-                        linearLayout_floorItems.addView(img_cellular, index);
-                        index++;
-                    }
-
-                    if (noise) {
-                        img_noise = new ImageView(context);
-                        img_noise.setId((int) 2);
-                        img_noise.setPadding(24, 24, 0, 24);
-                        img_noise.setBackgroundResource(R.drawable.ic_round_volume_off_24px);
-                        img_noise.setColorFilter(Color.parseColor("#2F80ED"));
-                        linearLayout_floorItems.addView(img_noise, index);
-                        index++;
-                    }
-
-                    if (food) {
-                        img_food = new ImageView(context);
-                        img_food.setId((int) 3);
-                        img_food.setPadding(24, 24, 0, 24);
-                        img_food.setBackgroundResource(R.drawable.ic_round_fastfood_24px);
-                        img_food.setColorFilter(Color.parseColor("#2F80ED"));
-                        linearLayout_floorItems.addView(img_food, index);
-                        index++;
-                    }
-
-                    if (power) {
-                        img_power = new ImageView(context);
-                        img_power.setId((int) 4);
-                        img_power.setPadding(24, 24, 0, 24);
-                        img_power.setBackgroundResource(R.drawable.ic_round_power_24px);
-                        img_power.setColorFilter(Color.parseColor("#2F80ED"));
-                        linearLayout_floorItems.addView(img_power, index);
-                        index++;
-                    }
-                }
-
 
                 LinearLayout.LayoutParams layoutParamsSpaceItems = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 linearLayout_spaceItems.addView(linearLayout_floorItems, layoutParamsSpaceItems);
