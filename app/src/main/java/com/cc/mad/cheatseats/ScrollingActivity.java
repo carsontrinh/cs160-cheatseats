@@ -316,6 +316,8 @@ public class ScrollingActivity extends AppCompatActivity {
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                cellularFilterEnabled = quietFilterEnabled = foodFilterEnabled = outletFilterEnabled = false;
                 fillSpaceCards();
                 myDialog.dismiss();
             }
