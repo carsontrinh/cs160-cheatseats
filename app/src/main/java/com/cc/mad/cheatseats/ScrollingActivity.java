@@ -101,8 +101,6 @@ public class ScrollingActivity extends AppCompatActivity {
         mainStacksFloors.add(mainStacksFloor2);
         mainStacksFloors.add(mainStacksFloor3);
 
-        spaces.add(mainStacks);
-
         // ====================================
         // Doe
         ArrayList<FloorItem> doeFloors = new ArrayList<>(3);
@@ -316,6 +314,8 @@ public class ScrollingActivity extends AppCompatActivity {
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                cellularFilterEnabled = quietFilterEnabled = foodFilterEnabled = outletFilterEnabled = false;
                 fillSpaceCards();
                 myDialog.dismiss();
             }
