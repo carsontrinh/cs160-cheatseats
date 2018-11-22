@@ -101,8 +101,6 @@ public class ScrollingActivity extends AppCompatActivity {
         mainStacksFloors.add(mainStacksFloor2);
         mainStacksFloors.add(mainStacksFloor3);
 
-        spaces.add(mainStacks);
-
         // ====================================
         // Doe
         ArrayList<FloorItem> doeFloors = new ArrayList<>(3);

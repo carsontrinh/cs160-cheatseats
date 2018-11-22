@@ -1,6 +1,7 @@
 package com.cc.mad.cheatseats;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +9,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -112,6 +114,37 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
 //                textView2.setPadding(64, 24, 0, 24);
 //                textView2.setGravity(Gravity.RIGHT);
 //                textView2.setBackground(ContextCompat.getDrawable(context, R.drawable.background_sub_module_text));
+
+                ImageView img_cellular, img_noise, img_food, img_power;
+
+                img_cellular = new ImageView(context);
+                img_cellular.setId((int) 1);
+                img_cellular.setPadding(64, 24, 0, 24);
+                img_cellular.setBackgroundResource(R.drawable.ic_round_network_cell_24px);
+                img_cellular.setColorFilter(Color.parseColor("#2F80ED"));
+                linearLayout_floorItems.addView(img_cellular, layoutParamsFloorItems);
+
+                img_noise = new ImageView(context);
+                img_noise.setId((int) 2);
+                img_noise.setPadding(64, 24, 0, 24);
+                img_noise.setBackgroundResource(R.drawable.ic_round_volume_off_24px);
+                img_noise.setColorFilter(Color.parseColor("#2F80ED"));
+                linearLayout_floorItems.addView(img_noise, layoutParamsFloorItems);
+
+                img_food = new ImageView(context);
+                img_food.setId((int) 3);
+                img_food.setPadding(64, 24, 0, 24);
+                img_food.setBackgroundResource(R.drawable.ic_round_fastfood_24px);
+                img_food.setColorFilter(Color.parseColor("#2F80ED"));
+                linearLayout_floorItems.addView(img_food, layoutParamsFloorItems);
+
+                img_power = new ImageView(context);
+                img_power.setId((int) 4);
+                img_power.setPadding(64, 24, 0, 24);
+                img_power.setBackgroundResource(R.drawable.ic_round_power_24px);
+                img_power.setColorFilter(Color.parseColor("#2F80ED"));
+                linearLayout_floorItems.addView(img_power, layoutParamsFloorItems);
+
 
 
 

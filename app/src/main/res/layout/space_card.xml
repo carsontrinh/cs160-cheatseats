@@ -63,6 +63,7 @@
                 app:srcCompat="@drawable/expand"
                 android:scaleType="centerCrop"
                 android:clickable="true"/>
+
         </RelativeLayout>
 
         <LinearLayout
@@ -70,13 +71,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <!--<LinearLayout-->
-                <!--android:id="@+id/ll_floor_items"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:orientation="horizontal">-->
-            <!--</LinearLayout>-->
 
         </LinearLayout>
 
