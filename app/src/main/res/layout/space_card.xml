@@ -66,10 +66,18 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:id="@+id/ll_child_items"
+            android:id="@+id/ll_space_items"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/ll_floor_items"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal">-->
+            <!--</LinearLayout>-->
+
         </LinearLayout>
 
     </LinearLayout>

@@ -1,19 +1,18 @@
 package com.cc.mad.cheatseats;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.text.method.LinkMovementMethod;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -39,25 +38,21 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
         holder.textView_parentName.setText(currentItem.getSpaceName());
         holder.textView_parentType.setText(currentItem.getSpaceType());
 
-        int noOfChildTextViews = holder.linearLayout_childItems.getChildCount() / 2;  // THIS IS VERY JANKY
+        int noOfChildTextViews = holder.linearLayout_spaceItems.getChildCount();
         int noOfChild = currentItem.getFloors().size();
         if (noOfChild < noOfChildTextViews) {
             for (int index = noOfChild; index < noOfChildTextViews; index++) {
-                TextView currentTextView = (TextView) holder.linearLayout_childItems.getChildAt(index * 2);
-                currentTextView.setVisibility(View.GONE);
 
-                System.out.println("THE ID I BEGONE:::::::: " + (index + 100));
-                TextView currentTextView2 = (TextView) holder.linearLayout_childItems.getChildAt(index * 2 + 1);
-                currentTextView2.setVisibility(View.GONE);
-
+                LinearLayout currentLinearLayout = (LinearLayout) holder.linearLayout_spaceItems.getChildAt(index);
+                TextView currentFloorTextView = (TextView) currentLinearLayout.getChildAt(0);
+                currentFloorTextView.setVisibility(View.GONE);
             }
         }
         for (int textViewIndex = 0; textViewIndex < noOfChild; textViewIndex++) {
-            TextView currentTextView = (TextView) holder.linearLayout_childItems.getChildAt(textViewIndex * 2);
-            currentTextView.setText(currentItem.getFloors().get(textViewIndex).getName());
+            LinearLayout currentLinearLayout = (LinearLayout) holder.linearLayout_spaceItems.getChildAt(textViewIndex);
+            TextView currentFloorTextView = (TextView) currentLinearLayout.getChildAt(0);
+            currentFloorTextView.setText(currentItem.getFloors().get(textViewIndex).getName());  // TODO
 
-            TextView currentTextView2 = (TextView) holder.linearLayout_childItems.getChildAt(textViewIndex * 2 + 1);
-            currentTextView2.setText(currentItem.getFloors().get(textViewIndex).getName());
         }
     }
 
@@ -71,8 +66,7 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
         private Context context;
         private TextView textView_parentName;
         private TextView textView_parentType;
-        private LinearLayout linearLayout_childItems;
-
+        private LinearLayout linearLayout_spaceItems;
 
         SpaceCardViewHolder (@NonNull View itemView) {
             super(itemView);
@@ -80,8 +74,8 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
             textView_parentName = itemView.findViewById(R.id.space_name);
             textView_parentType = itemView.findViewById(R.id.space_type);
 
-            linearLayout_childItems = itemView.findViewById(R.id.ll_child_items);
-            linearLayout_childItems.setVisibility(View.GONE);
+            linearLayout_spaceItems = itemView.findViewById(R.id.ll_space_items);
+            linearLayout_spaceItems.setVisibility(View.GONE);
 
             int intMaxNoOfChild = 0;
             for (int index = 0; index < cardList.size(); index++) {
@@ -89,26 +83,40 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
                 if (intMaxSizeTemp > intMaxNoOfChild) intMaxNoOfChild = intMaxSizeTemp;
             }
             for (int indexView = 0; indexView < intMaxNoOfChild; indexView++) {
+
+                LinearLayout linearLayout_floorItems;
+
+//                linearLayout_floorItems = itemView.findViewById(R.id.ll_floor_items);
+                linearLayout_floorItems = new LinearLayout(context);
+
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                linearLayout_floorItems.setLayoutParams(params);
+                linearLayout_floorItems.setOrientation(LinearLayout.HORIZONTAL);
+
+                linearLayout_floorItems.setId(indexView);
+                linearLayout_floorItems.setBackground(ContextCompat.getDrawable(context, R.drawable.background_sub_module_text));
+                linearLayout_floorItems.setOnClickListener(this);
+
+
                 TextView textView = new TextView(context);
                 textView.setId(indexView);
                 textView.setPadding(64, 24, 0, 24);
                 textView.setGravity(Gravity.LEFT);
-                textView.setBackground(ContextCompat.getDrawable(context, R.drawable.background_sub_module_text));
 
-                TextView textView2 = new TextView(context);
-                textView2.setId(indexView + 100);
-                System.out.println("THE ID I MAKE:::::::: " + (indexView + 100));
-                textView2.setPadding(64, 24, 0, 24);
-                textView2.setGravity(Gravity.RIGHT);
-                textView2.setBackground(ContextCompat.getDrawable(context, R.drawable.background_sub_module_text));
+                LinearLayout.LayoutParams layoutParamsFloorItems = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                linearLayout_floorItems.addView(textView, layoutParamsFloorItems);
 
-                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//                TextView textView2 = new TextView(context);
+//                textView2.setId(indexView + 100);
+//                System.out.println("THE ID I MAKE:::::::: " + (indexView + 100));
+//                textView2.setPadding(64, 24, 0, 24);
+//                textView2.setGravity(Gravity.RIGHT);
+//                textView2.setBackground(ContextCompat.getDrawable(context, R.drawable.background_sub_module_text));
 
-                textView.setOnClickListener(this);
-                linearLayout_childItems.addView(textView, layoutParams);
 
-                textView2.setOnClickListener(this);
-                linearLayout_childItems.addView(textView2, layoutParams);
+
+                LinearLayout.LayoutParams layoutParamsSpaceItems = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                linearLayout_spaceItems.addView(linearLayout_floorItems, layoutParamsSpaceItems);
             }
             itemView.setOnClickListener(this);
         }
@@ -118,13 +126,16 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
             System.out.println("CLICKED");
             textView_parentName = view.findViewById(R.id.space_name);
             if (textView_parentName != null && textView_parentName.getId() == R.id.space_name) {
-                if (linearLayout_childItems.getVisibility() == View.VISIBLE) {
-                    linearLayout_childItems.setVisibility(View.GONE);
+                if (linearLayout_spaceItems.getVisibility() == View.VISIBLE) {
+                    linearLayout_spaceItems.setVisibility(View.GONE);
                 } else {
-                    linearLayout_childItems.setVisibility(View.VISIBLE);
+                    linearLayout_spaceItems.setVisibility(View.VISIBLE);
                 }
-            } else {
-                TextView textViewClicked = (TextView) view;
+            }
+
+            else {
+                LinearLayout ll_space = (LinearLayout) view;
+                TextView textViewClicked = (TextView) ll_space.getChildAt(0);
                 Toast.makeText(context, "" + textViewClicked.getText().toString(), Toast.LENGTH_SHORT).show();
             }
         }
