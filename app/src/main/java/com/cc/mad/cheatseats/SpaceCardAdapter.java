@@ -39,25 +39,25 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
         holder.textView_parentName.setText(currentItem.getSpaceName());
         holder.textView_parentType.setText(currentItem.getSpaceType());
 
-        int noOfChildTextViews = holder.linearLayout_childItems.getChildCount();
+        int noOfChildTextViews = holder.linearLayout_childItems.getChildCount() / 2;  // THIS IS VERY JANKY
         int noOfChild = currentItem.getFloors().size();
         if (noOfChild < noOfChildTextViews) {
             for (int index = noOfChild; index < noOfChildTextViews; index++) {
-                TextView currentTextView = (TextView) holder.linearLayout_childItems.getChildAt(index);
+                TextView currentTextView = (TextView) holder.linearLayout_childItems.getChildAt(index * 2);
                 currentTextView.setVisibility(View.GONE);
 
-//                System.out.println("THE ID I BEGON:::::::: " + index + 100);
-//                TextView currentTextView2 = (TextView) holder.linearLayout_childItems.getChildAt(index + 100);
-//                currentTextView2.setVisibility(View.GONE);
+                System.out.println("THE ID I BEGONE:::::::: " + (index + 100));
+                TextView currentTextView2 = (TextView) holder.linearLayout_childItems.getChildAt(index * 2 + 1);
+                currentTextView2.setVisibility(View.GONE);
 
             }
         }
         for (int textViewIndex = 0; textViewIndex < noOfChild; textViewIndex++) {
-            TextView currentTextView = (TextView) holder.linearLayout_childItems.getChildAt(textViewIndex);
+            TextView currentTextView = (TextView) holder.linearLayout_childItems.getChildAt(textViewIndex * 2);
             currentTextView.setText(currentItem.getFloors().get(textViewIndex).getName());
 
-//            TextView currentTextView2 = (TextView) holder.linearLayout_childItems.getChildAt(textViewIndex + 100);
-//            currentTextView2.setText(currentItem.getFloors().get(textViewIndex).getName());
+            TextView currentTextView2 = (TextView) holder.linearLayout_childItems.getChildAt(textViewIndex * 2 + 1);
+            currentTextView2.setText(currentItem.getFloors().get(textViewIndex).getName());
         }
     }
 
@@ -65,9 +65,6 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
     public int getItemCount() {
         return cardList.size();
     }
-
-
-
 
     class SpaceCardViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -98,19 +95,20 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
                 textView.setGravity(Gravity.LEFT);
                 textView.setBackground(ContextCompat.getDrawable(context, R.drawable.background_sub_module_text));
 
-//                TextView textView2 = new TextView(context);
-//                textView2.setId(indexView + 100);
-//                System.out.println("THE ID I MAKE:::::::: " + indexView + 100);
-//                textView2.setPadding(64, 24, 0, 24);
-//                textView2.setGravity(Gravity.RIGHT);
-//
-//                textView2.setBackground(ContextCompat.getDrawable(context, R.drawable.background_sub_module_text));
+                TextView textView2 = new TextView(context);
+                textView2.setId(indexView + 100);
+                System.out.println("THE ID I MAKE:::::::: " + (indexView + 100));
+                textView2.setPadding(64, 24, 0, 24);
+                textView2.setGravity(Gravity.RIGHT);
+                textView2.setBackground(ContextCompat.getDrawable(context, R.drawable.background_sub_module_text));
 
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
                 textView.setOnClickListener(this);
                 linearLayout_childItems.addView(textView, layoutParams);
-//                linearLayout_childItems.addView(textView2, layoutParams);
 
+                textView2.setOnClickListener(this);
+                linearLayout_childItems.addView(textView2, layoutParams);
             }
             itemView.setOnClickListener(this);
         }
