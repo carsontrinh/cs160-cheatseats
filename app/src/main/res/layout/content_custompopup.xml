@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="350dp"
     android:layout_height="475dp"
-    android:background="@color/colorPrimaryDark"
+    android:background="#fff"
     android:padding="5dp"
     android:layout_gravity="center">
 
@@ -16,8 +16,17 @@
         android:layout_gravity="end"
         android:gravity="center"
         android:text="X"
-        android:textColor="@color/white"
+        android:textColor="#444"
         android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="216dp"
+        android:layout_height="60dp"
+        android:text="Filter by:"
+        android:textSize="48px"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="25dp"
+        />
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -25,57 +34,67 @@
 
         <ToggleButton
             android:id="@+id/cellular"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginTop="84dp"
+            android:background="@drawable/toggle_button"
             android:text="cell reception"
-            android:textOff="cell reception"
-            android:textOn="cell reception"
+            android:textOff="Cell Reception"
+            android:textOn="Cell Reception"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ToggleButton
             android:id="@+id/quiet"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="52dp"
             android:layout_marginTop="36dp"
+            android:background="@drawable/toggle_button"
             android:text="quiet"
-            android:textOff="quiet"
-            android:textOn="quiet"
+            android:textOff="Quiet"
+            android:textOn="Quiet"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cellular" />
 
         <ToggleButton
             android:id="@+id/food"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="44dp"
+            android:background="@drawable/toggle_button"
             android:text="allows food"
-            android:textOff="allows food"
-            android:textOn="allows food"
+            android:textOff="Allows Food"
+            android:textOn="Allows Food"
             app:layout_constraintBaseline_toBaselineOf="@+id/quiet"
             app:layout_constraintStart_toEndOf="@+id/quiet" />
 
         <ToggleButton
             android:id="@+id/outlets"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
+            android:background="@drawable/toggle_button"
             android:text="outlets"
-            android:textOff="outlets"
-            android:textOn="outlets"
+            android:textOff="Outlets"
+            android:textOn="Outlets"
             app:layout_constraintBaseline_toBaselineOf="@+id/cellular"
             app:layout_constraintStart_toEndOf="@+id/cellular" />
 
         <Button
             android:id="@+id/filter"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
+            android:background="@drawable/shape_button"
             android:text="Filter"
             app:layout_constraintBaseline_toBaselineOf="@+id/reset"
             app:layout_constraintEnd_toEndOf="parent"
@@ -83,11 +102,13 @@
 
         <Button
             android:id="@+id/reset"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|left"
-            android:layout_marginStart="68dp"
+            android:layout_marginStart="48dp"
             android:layout_marginTop="184dp"
+            android:background="@drawable/shape_button"
             android:text="Reset"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/quiet" />
