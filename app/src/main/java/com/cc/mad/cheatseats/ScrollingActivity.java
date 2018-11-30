@@ -57,8 +57,9 @@ public class ScrollingActivity extends BaseActivity {
         myDialog = new Dialog(this);
     }
 
-    public void switchToFloorViewActivity(View view) {
+    public void switchToFloorViewActivity(FloorItem floorItem) {
         Intent intent = new Intent(this, FloorViewActivity.class);
+        intent.putExtra("FloorItem", floorItem);
         startActivity(intent);
     }
 
@@ -79,7 +80,7 @@ public class ScrollingActivity extends BaseActivity {
         FloorItem mainStacksFloor1, mainStacksFloor2, mainStacksFloor3;
         mainStacks.setFloors(mainStacksFloors);
 
-        mainStacksFloor1 = new FloorItem();
+        mainStacksFloor1 = new FloorItem(mainStacks);
         mainStacksFloor1.setName("Level B");
         mainStacksFloor1.setHasGoodCellular(false);
         mainStacksFloor1.setQuiet(true);
@@ -87,7 +88,7 @@ public class ScrollingActivity extends BaseActivity {
         mainStacksFloor1.setHasOutlets(true);
         mainStacksFloor1.setCrowdedness(Crowdedness.LOW);  // TODO: currently hardcoded...will need to fix eventually :c
 
-        mainStacksFloor2 = new FloorItem();
+        mainStacksFloor2 = new FloorItem(mainStacks);
         mainStacksFloor2.setName("Level C");
         mainStacksFloor2.setHasGoodCellular(false);
         mainStacksFloor2.setQuiet(true);
@@ -95,7 +96,7 @@ public class ScrollingActivity extends BaseActivity {
         mainStacksFloor2.setHasOutlets(true);
         mainStacksFloor2.setCrowdedness(Crowdedness.MEDIUM);
 
-        mainStacksFloor3 = new FloorItem();
+        mainStacksFloor3 = new FloorItem(mainStacks);
         mainStacksFloor3.setName("Level D");
         mainStacksFloor3.setHasGoodCellular(false);
         mainStacksFloor3.setQuiet(true);
@@ -113,7 +114,7 @@ public class ScrollingActivity extends BaseActivity {
         FloorItem doeFloor1, doeFloor2, doeFloor3;
         doe.setFloors(doeFloors);
 
-        doeFloor1 = new FloorItem();
+        doeFloor1 = new FloorItem(doe);
         doeFloor1.setName("North Reading Room");
         doeFloor1.setHasGoodCellular(true);
         doeFloor1.setQuiet(true);
@@ -121,7 +122,7 @@ public class ScrollingActivity extends BaseActivity {
         doeFloor1.setHasOutlets(true);
         doeFloor1.setCrowdedness(Crowdedness.LOW);
 
-        doeFloor2 = new FloorItem();
+        doeFloor2 = new FloorItem(doe);
         doeFloor2.setName("Rosberg Reading Room");
         doeFloor2.setHasGoodCellular(true);
         doeFloor2.setQuiet(true);
@@ -129,7 +130,7 @@ public class ScrollingActivity extends BaseActivity {
         doeFloor2.setHasOutlets(true);
         doeFloor2.setCrowdedness(Crowdedness.LOW);
 
-        doeFloor3 = new FloorItem();
+        doeFloor3 = new FloorItem(doe);
         doeFloor3.setName("Heyns Reading Room");
         doeFloor3.setHasGoodCellular(true);
         doeFloor3.setQuiet(true);
@@ -147,15 +148,23 @@ public class ScrollingActivity extends BaseActivity {
         FloorItem moffitFloor1, moffitFloor2, moffitFloor3, moffitFloor4;
         moffitt.setFloors(moffitFloors);
 
-        moffitFloor1 = new FloorItem();
-        moffitFloor1.setName("Floor 5");
-        moffitFloor1.setHasGoodCellular(true);
-        moffitFloor1.setQuiet(true);
+        moffitFloor1 = new FloorItem(moffitt);
+        moffitFloor1.setName("Floor 1");
+        moffitFloor1.setHasGoodCellular(false);
+        moffitFloor1.setQuiet(false);
         moffitFloor1.setAllowsFood(true);
         moffitFloor1.setHasOutlets(true);
         moffitFloor1.setCrowdedness(Crowdedness.MEDIUM);
 
-        moffitFloor2 = new FloorItem();
+        moffitFloor2 = new FloorItem(moffitt);
+        moffitFloor2.setName("Floor 3");
+        moffitFloor2.setHasGoodCellular(true);
+        moffitFloor2.setQuiet(true);
+        moffitFloor2.setAllowsFood(true);
+        moffitFloor2.setHasOutlets(false);
+        moffitFloor2.setCrowdedness(Crowdedness.LOW);
+
+        moffitFloor2 = new FloorItem(moffitt);
         moffitFloor2.setName("Floor 4");
         moffitFloor2.setHasGoodCellular(true);
         moffitFloor2.setQuiet(false);
@@ -163,25 +172,17 @@ public class ScrollingActivity extends BaseActivity {
         moffitFloor2.setHasOutlets(true);
         moffitFloor2.setCrowdedness(Crowdedness.HIGH);
 
-        moffitFloor3 = new FloorItem();
-        moffitFloor3.setName("Floor 3");
-        moffitFloor3.setHasGoodCellular(true);
-        moffitFloor3.setQuiet(true);
-        moffitFloor3.setAllowsFood(true);
-        moffitFloor3.setHasOutlets(false);
-        moffitFloor3.setCrowdedness(Crowdedness.LOW);
-
-        moffitFloor4 = new FloorItem();
-        moffitFloor4.setName("Floor 1");
-        moffitFloor4.setHasGoodCellular(false);
-        moffitFloor4.setQuiet(false);
+        moffitFloor4 = new FloorItem(moffitt);
+        moffitFloor4.setName("Floor 5");
+        moffitFloor4.setHasGoodCellular(true);
+        moffitFloor4.setQuiet(true);
         moffitFloor4.setAllowsFood(true);
         moffitFloor4.setHasOutlets(true);
         moffitFloor4.setCrowdedness(Crowdedness.MEDIUM);
 
         moffitFloors.add(moffitFloor1);
         moffitFloors.add(moffitFloor2);
-        moffitFloors.add(moffitFloor3);
+        moffitFloors.add(moffitFloor2);
         moffitFloors.add(moffitFloor4);
 
         // ====================================
@@ -190,7 +191,7 @@ public class ScrollingActivity extends BaseActivity {
         FloorItem kresgeFloor1;
         kresge.setFloors(kresgeFloors);
 
-        kresgeFloor1 = new FloorItem();
+        kresgeFloor1 = new FloorItem(moffitt);
         kresgeFloor1.setName("Floor 1");
         kresgeFloor1.setHasGoodCellular(false);
         kresgeFloor1.setQuiet(false);
@@ -206,7 +207,7 @@ public class ScrollingActivity extends BaseActivity {
         FloorItem fsmFloor1;
         fsm.setFloors(fsmFloors);
 
-        fsmFloor1 = new FloorItem();
+        fsmFloor1 = new FloorItem(moffitt);
         fsmFloor1.setName("Floor 1");
         fsmFloor1.setHasGoodCellular(true);
         fsmFloor1.setQuiet(false);

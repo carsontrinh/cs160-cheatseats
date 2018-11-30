@@ -55,16 +55,18 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
                 currentFloorTextView.setVisibility(View.GONE);
             }
         }
-        for (int textViewIndex = 0; textViewIndex < noOfChild; textViewIndex++) {
-            LinearLayout currentLinearLayout = (LinearLayout) holder.linearLayout_spaceItems.getChildAt(textViewIndex);
+        for (int floorIndex = 0; floorIndex < noOfChild; floorIndex++) {
+            LinearLayout currentLinearLayout = (LinearLayout) holder.linearLayout_spaceItems.getChildAt(floorIndex);
             TextView currentFloorTextView = (TextView) currentLinearLayout.getChildAt(0);
-            currentFloorTextView.setText(currentItem.getFloors().get(textViewIndex).getName());
+            currentFloorTextView.setText(currentItem.getFloors().get(floorIndex).getName());
 
             final Context context = holder.context;
+            final FloorItem floor = currentItem.getFloors().get(floorIndex);
+
             currentLinearLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ((ScrollingActivity) context).switchToFloorViewActivity(v);
+                    ((ScrollingActivity) context).switchToFloorViewActivity(floor);
                 }
             });
         }
