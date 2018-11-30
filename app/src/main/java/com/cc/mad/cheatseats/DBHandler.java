@@ -8,19 +8,22 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "student";
-    private static final String TABLE_DETAIL = "studentDetails";
+    private static final String DATABASE_NAME = "responses";
+    private static final String TABLE_DETAIL = "responseInfo";
 
     private static final String KEY_ID = "id";
-    private static final String KEY_NAME = "name";
+    private static final String KEY_LIBRARY = "library";
+    private static final String KEY_RATING = "rating";
 
     public DBHandler(Context contex) { super(contex, DATABASE_NAME, null, DATABASE_VERSION); }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_DETAIL_TABLE = "CREATE TABLE " + TABLE_DETAIL + "("
-                + KEY_ID + " INTEGER PRIMARY KEY,"
-                + KEY_NAME + " TEXT" + ")";
+                + KEY_ID + " TEXT,"
+                + KEY_LIBRARY + " TEXT,"
+                + KEY_RATING + " INT,"
+                + "PRIMARY KEY (KEY_ID, KEY_LIBRARY)" + ")";
 
         db.execSQL(CREATE_DETAIL_TABLE);
     }
@@ -38,8 +41,8 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         while (cursor.moveToNext()) {
-            int result_0 = cursor.getInt(0);
-            String result_1 = cursor.getString(1);
+            String result_0 = cursor.getString(0);
+            int result_1 = cursor.getInt(1);
             result += String.valueOf(result_0) + " " + result_1 +
                     System.getProperty("line.separator");
         }
@@ -48,24 +51,24 @@ public class DBHandler extends SQLiteOpenHelper {
         return result;
     }
 
-    public void addHandler(Student student) {
+    public void addHandler(Response response) {
         ContentValues values = new ContentValues();
-        values.put(KEY_ID, student.getID());
-        values.put(KEY_NAME, student.getStudentName());
+        values.put(KEY_ID, response.getID() + response.getLibraryName());
+        values.put(KEY_RATING, response.getRating());
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(TABLE_DETAIL, null, values);
         db.close();
     }
 
-    public Student findHandler(String studentname) {
-        String query = "Select * FROM " + TABLE_DETAIL + "WHERE" + KEY_NAME + " = " + "'" + studentname + "'";
+    public Response findHandler(int rating) {
+        String query = "Select * FROM " + TABLE_DETAIL + "WHERE" + KEY_RATING + " = " + "'" + rating + "'";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
-        Student student = new Student();
+        Response response = new Response();
         if (cursor.moveToFirst()) {
             cursor.moveToFirst();
-            student.setID(Integer.parseInt(cursor.getString(0)));
-            student.setStudentName(cursor.getString(1));
+            response.setID(Integer.parseInt(cursor.getString(0)));
+            response.setStudentName(cursor.getString(1));
             cursor.close();
         } else {
             student = null;

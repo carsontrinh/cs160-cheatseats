@@ -1,74 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/floor_border_upsidedown"
-    android:padding="10dp">
+    android:layout_height="match_parent">
 
-
-    <TextView
-        android:id="@+id/rating_prompt"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="@string/rating_message"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle=""
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:animateLayoutChanges="true"
+            android:background="@drawable/floor_border"
+            android:orientation="vertical"
+            android:padding="24dp">
 
 
-    <ImageButton
-        android:id="@+id/rate_low"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_below="@+id/rating_prompt"
-        android:layout_centerInParent="true"
-        android:layout_marginRight="48dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/selector_button_outline"
-        app:layout_constraintBottom_toBottomOf="@+id/rate_medium"
-        app:layout_constraintRight_toLeftOf="@id/rate_medium"
-        app:layout_constraintTop_toTopOf="@+id/rate_medium"
-        app:srcCompat="@drawable/crowded_low" />
+            <TextView
+                android:id="@+id/rating_prompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Already here? Tell us how crowded it is!"
+                android:textSize="12sp"
+                android:textStyle="" />
 
-    <ImageButton
-        android:id="@+id/rate_medium"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_below="@+id/rating_prompt"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="24dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
-        android:background="@drawable/selector_button_outline"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rating_prompt"
-        app:srcCompat="@drawable/crowded_medium" />
+            <ImageView
+                android:id="@+id/expand_collapse"
+                android:layout_width="24dp"
+                android:layout_height="18dp"
+                android:layout_alignParentEnd="true"
+                android:clickable="true"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/expand" />
 
-    <ImageButton
-        android:id="@+id/rate_high"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_below="@+id/rating_prompt"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="8dp"
-        android:layout_toEndOf="@+id/rate_medium"
-        android:background="@drawable/selector_button_outline"
-        app:layout_constraintBottom_toBottomOf="@+id/rate_medium"
-        app:layout_constraintLeft_toRightOf="@id/rate_medium"
-        app:layout_constraintTop_toTopOf="@+id/rate_medium"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/crowded_high" />
+            <ImageView
+                android:id="@+id/rate_low"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rating_prompt"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginBottom="24dp"
+                android:layout_toEndOf="@+id/rate_medium"
+                app:srcCompat="@drawable/crowded_low" />
+
+            <ImageView
+                android:id="@+id/rate_medium"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rating_prompt"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="36dp"
+                app:srcCompat="@drawable/crowded_medium" />
+
+            <ImageView
+                android:id="@+id/rate_high"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rating_prompt"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="48dp"
+                android:layout_toStartOf="@+id/rate_medium"
+                app:srcCompat="@drawable/crowded_high" />
+
+            <TextView
+                android:id="@+id/select_low"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rating_prompt"
+                android:layout_centerHorizontal="true"
+                android:text="" />
 
 
-</android.support.constraint.ConstraintLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
