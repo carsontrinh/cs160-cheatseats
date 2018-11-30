@@ -1,6 +1,7 @@
 package com.cc.mad.cheatseats;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -25,7 +26,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-public class ScrollingActivity extends AppCompatActivity {
+public class ScrollingActivity extends BaseActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -54,6 +55,11 @@ public class ScrollingActivity extends AppCompatActivity {
         fillSpaces();
         fillSpaceCards();
         myDialog = new Dialog(this);
+    }
+
+    public void switchToFloorViewActivity(View view) {
+        Intent intent = new Intent(this, FloorViewActivity.class);
+        startActivity(intent);
     }
 
     private void fillSpaces(){

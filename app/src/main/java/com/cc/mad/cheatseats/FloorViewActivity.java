@@ -3,7 +3,7 @@ package com.cc.mad.cheatseats;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class FloorViewActivity extends AppCompatActivity {
+public class FloorViewActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

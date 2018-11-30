@@ -1,6 +1,8 @@
 package com.cc.mad.cheatseats;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -35,11 +37,13 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SpaceCardViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull final SpaceCardViewHolder holder, int i) {
         SpaceCardItem currentItem = cardList.get(i);
 
         holder.textView_parentName.setText(currentItem.getSpaceName());
         holder.textView_parentType.setText(currentItem.getSpaceType());
+
+        // First, we set some of the subfloor views to be invisible since there are extra.
 
         int noOfChildTextViews = holder.linearLayout_spaceItems.getChildCount();
         int noOfChild = currentItem.getFloors().size();
@@ -54,8 +58,19 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
         for (int textViewIndex = 0; textViewIndex < noOfChild; textViewIndex++) {
             LinearLayout currentLinearLayout = (LinearLayout) holder.linearLayout_spaceItems.getChildAt(textViewIndex);
             TextView currentFloorTextView = (TextView) currentLinearLayout.getChildAt(0);
-            currentFloorTextView.setText(currentItem.getFloors().get(textViewIndex).getName());  // TODO
+            currentFloorTextView.setText(currentItem.getFloors().get(textViewIndex).getName());
+
+            final Context context = holder.context;
+            currentLinearLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((ScrollingActivity) context).switchToFloorViewActivity(v);
+                }
+            });
         }
+
+
+        // Now, we set all the icons
 
         Context context2 = holder.context;
 
@@ -199,7 +214,9 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
                 LinearLayout ll_space = (LinearLayout) view;
                 TextView textViewClicked = (TextView) ll_space.getChildAt(0);
                 Toast.makeText(context, "" + textViewClicked.getText().toString(), Toast.LENGTH_SHORT).show();
+
             }
         }
+
     }
 }
