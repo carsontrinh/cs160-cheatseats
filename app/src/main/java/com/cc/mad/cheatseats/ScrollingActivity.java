@@ -15,6 +15,8 @@ import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -234,6 +236,12 @@ public class ScrollingActivity extends BaseActivity {
     private void fillSpaceCards() {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
+        Collections.sort(spaces, new Comparator<SpaceCardItem>() {
+            @Override
+            public int compare(SpaceCardItem o1, SpaceCardItem o2) {
+                return o1.getSpaceName().compareTo(o2.getSpaceName());
+            }
+        });
         adapter = new SpaceCardAdapter(spaces);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
