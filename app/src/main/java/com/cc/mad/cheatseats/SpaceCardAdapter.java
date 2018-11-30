@@ -204,6 +204,13 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
         @Override
         public void onClick(View view) {
             System.out.println("CLICKED");
+            ImageView arrow = view.findViewById(R.id.expand_collapse);
+            if (arrow.getRotation() == 0F) {
+                arrow.setRotation(180F);
+            } else {
+                arrow.setRotation(0F);
+            }
+            System.out.println(arrow.getRotation());
             textView_parentName = view.findViewById(R.id.space_name);
             if (textView_parentName != null && textView_parentName.getId() == R.id.space_name) {
                 if (linearLayout_spaceItems.getVisibility() == View.VISIBLE) {

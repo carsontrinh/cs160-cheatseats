@@ -8,23 +8,22 @@
     android:padding="5dp"
     android:layout_gravity="center">
 
-    <android.support.v7.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:card_view="http://schemas.android.com/tools"
         android:id="@+id/card_wrapper"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:divider="@android:color/transparent"
-        android:clipToPadding="false"
-        android:clipChildren="false"
-        card_view:cardElevation="10dp"
-        card_view:cardPreventCornerOverlap="false"
-        app:cardCornerRadius="4dp"
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
-        app:cardBackgroundColor="@color/white">
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:divider="@android:color/transparent"
+        android:foreground="?android:attr/selectableItemBackground"
+
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="4dp"
+        card_view:cardElevation="10dp"
+        card_view:cardPreventCornerOverlap="false">
 
         <TextView
             android:id="@+id/txtclose"
@@ -37,13 +36,12 @@
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="216dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="@string/filter_message"
-            android:textSize="18sp"
-            android:layout_marginStart="150dp"
             android:layout_marginTop="25dp"
-            />
+            android:gravity="center"
+            android:text="@string/filter_message"
+            android:textSize="18sp" />
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -52,60 +50,62 @@
             <ToggleButton
                 android:id="@+id/cellular"
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
+                android:layout_width="145dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="84dp"
                 android:background="@drawable/toggle_button"
                 android:text="@string/cell_reception"
+                android:textColor="@color/toggle_color"
                 android:textOff="@string/cell_reception"
                 android:textOn="@string/cell_reception"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textColor="@color/toggle_color" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ToggleButton
                 android:id="@+id/quiet"
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
+                android:layout_width="145dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="52dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="36dp"
                 android:background="@drawable/toggle_button"
                 android:text="@string/noise_level"
+                android:textColor="@color/toggle_color"
                 android:textOff="@string/noise_level"
                 android:textOn="@string/noise_level"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cellular"
-                android:textColor="@color/toggle_color" />
+                app:layout_constraintTop_toBottomOf="@+id/cellular" />
 
             <ToggleButton
                 android:id="@+id/food"
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
+                android:layout_width="145dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="44dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/toggle_button"
                 android:text="@string/food_allowed"
+                android:textColor="@color/toggle_color"
                 android:textOff="@string/food_allowed"
                 android:textOn="@string/food_allowed"
                 app:layout_constraintBaseline_toBaselineOf="@+id/quiet"
-                app:layout_constraintStart_toEndOf="@+id/quiet"
-                android:textColor="@color/toggle_color" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <ToggleButton
                 android:id="@+id/outlets"
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
+                android:layout_width="145dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/toggle_button"
                 android:text="@string/outlets"
+                android:textColor="@color/toggle_color"
                 android:textOff="@string/outlets"
                 android:textOn="@string/outlets"
                 app:layout_constraintBaseline_toBaselineOf="@+id/cellular"
-                app:layout_constraintStart_toEndOf="@+id/cellular"
-                android:textColor="@color/toggle_color" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/cellular" />
 
             <Button
                 android:id="@+id/filter"
@@ -113,8 +113,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
-                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/shape_button_update"
                 android:text="@string/apply_filter"
                 android:textColor="#FFFFFF"
@@ -128,14 +128,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
-                android:layout_marginStart="48dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="184dp"
                 android:layout_marginBottom="48dp"
                 android:background="@drawable/shape_button"
                 android:text="@string/reset_filter"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/quiet"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:layout_constraintVertical_bias="0.49" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
