@@ -3,6 +3,7 @@ package com.cc.mad.cheatseats;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -29,6 +30,7 @@ public class FloorViewActivity extends BaseActivity {
         TextView textView_spaceType = findViewById(R.id.space_type);
         TextView textView_floorName = findViewById(R.id.floor_name);
         TextView textView_divider = findViewById(R.id.divider);
+        ImageView image = findViewById(R.id.imageView3);
 
         textView_spaceName.setText(spaceCardItem.getSpaceName());
         textView_spaceType.setText(spaceCardItem.getSpaceType());
