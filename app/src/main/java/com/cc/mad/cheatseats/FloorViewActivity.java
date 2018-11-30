@@ -30,10 +30,17 @@ public class FloorViewActivity extends BaseActivity {
         TextView textView_spaceType = findViewById(R.id.space_type);
         TextView textView_floorName = findViewById(R.id.floor_name);
         TextView textView_divider = findViewById(R.id.divider);
+        TextView textView_hours = findViewById(R.id.hours_text);
+        TextView textView_booking = findViewById(R.id.booking_text);
+        TextView textView_floorplan = findViewById(R.id.floorplan_text);
+        TextView textView_phone = findViewById(R.id.number_text);
 
         textView_spaceName.setText(spaceCardItem.getSpaceName());
         textView_spaceType.setText(spaceCardItem.getSpaceType());
         textView_floorName.setText(floorItem.getName());
+        textView_booking.setText(floorItem.getLinkBooking());
+        textView_floorplan.setText(floorItem.getLinkFloorPlan());
+        textView_phone.setText(floorItem.getPhoneNumber());
 
         if (spaceCardItem.getFloors().size() == 1) {
             textView_floorName.setVisibility(View.GONE);

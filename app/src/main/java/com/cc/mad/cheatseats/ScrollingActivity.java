@@ -93,9 +93,9 @@ public class ScrollingActivity extends BaseActivity {
         mainStacksFloor1.setAllowsFood(false);
         mainStacksFloor1.setHasOutlets(true);
         mainStacksFloor1.setCrowdedness(Crowdedness.LOW);
-        mainStacksFloor1.setLinkFloorPlan("asdf");
-        mainStacksFloor1.setLinkBooking("asdf");
-        mainStacksFloor1.setLinkBooking("asdf");
+        mainStacksFloor1.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/stacks_b.pdf");
+        mainStacksFloor1.setLinkBooking("http://berkeley.libcal.com/booking/gardner");
+        mainStacksFloor1.setPhoneNumber("510-643-4331");
 
         mainStacksFloor2 = new FloorItem(mainStacks);
         mainStacksFloor2.setName("Level C");
@@ -104,6 +104,9 @@ public class ScrollingActivity extends BaseActivity {
         mainStacksFloor2.setAllowsFood(false);
         mainStacksFloor2.setHasOutlets(true);
         mainStacksFloor2.setCrowdedness(Crowdedness.MEDIUM);
+        mainStacksFloor2.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/stacks_c.pdf");
+        mainStacksFloor2.setLinkBooking("http://berkeley.libcal.com/booking/gardner");
+        mainStacksFloor2.setPhoneNumber("510-643-4331");
 
         mainStacksFloor3 = new FloorItem(mainStacks);
         mainStacksFloor3.setName("Level D");
@@ -112,6 +115,9 @@ public class ScrollingActivity extends BaseActivity {
         mainStacksFloor3.setAllowsFood(false);
         mainStacksFloor3.setHasOutlets(true);
         mainStacksFloor3.setCrowdedness(Crowdedness.LOW);
+        mainStacksFloor3.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/stacks_d.pdf");
+        mainStacksFloor3.setLinkBooking("http://berkeley.libcal.com/booking/gardner");
+        mainStacksFloor3.setPhoneNumber("510-643-4331");
 
         mainStacksFloors.add(mainStacksFloor1);
         mainStacksFloors.add(mainStacksFloor2);
@@ -130,6 +136,9 @@ public class ScrollingActivity extends BaseActivity {
         doeFloor1.setAllowsFood(false);
         doeFloor1.setHasOutlets(true);
         doeFloor1.setCrowdedness(Crowdedness.LOW);
+        doeFloor1.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/doe_2.pdf");
+        doeFloor1.setLinkBooking("n/a");
+        doeFloor1.setPhoneNumber("510-642-6657");
 
         doeFloor2 = new FloorItem(doe);
         doeFloor2.setName("Rosberg Reading Room");
@@ -138,6 +147,9 @@ public class ScrollingActivity extends BaseActivity {
         doeFloor2.setAllowsFood(false);
         doeFloor2.setHasOutlets(true);
         doeFloor2.setCrowdedness(Crowdedness.LOW);
+        doeFloor2.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/rosberg.pdf");
+        doeFloor2.setLinkBooking("n/a");
+        doeFloor2.setPhoneNumber("510-642-6657");
 
         doeFloor3 = new FloorItem(doe);
         doeFloor3.setName("Heyns Reading Room");
@@ -146,6 +158,10 @@ public class ScrollingActivity extends BaseActivity {
         doeFloor3.setAllowsFood(false);
         doeFloor3.setHasOutlets(true);
         doeFloor3.setCrowdedness(Crowdedness.LOW);
+        doeFloor3.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/heyns.pdf");
+        doeFloor3.setLinkBooking("n/a");
+        doeFloor3.setPhoneNumber("510-642-6657");
+
 
         doeFloors.add(doeFloor1);
         doeFloors.add(doeFloor2);
@@ -164,6 +180,9 @@ public class ScrollingActivity extends BaseActivity {
         moffitFloor1.setAllowsFood(true);
         moffitFloor1.setHasOutlets(true);
         moffitFloor1.setCrowdedness(Crowdedness.MEDIUM);
+        moffitFloor1.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/moff-floorplan-1.pdf");
+        moffitFloor1.setLinkBooking("n/a");
+        moffitFloor1.setPhoneNumber("510-642-5072");
 
         moffitFloor2 = new FloorItem(moffitt);
         moffitFloor2.setName("Floor 3");
@@ -172,6 +191,9 @@ public class ScrollingActivity extends BaseActivity {
         moffitFloor2.setAllowsFood(true);
         moffitFloor2.setHasOutlets(false);
         moffitFloor2.setCrowdedness(Crowdedness.LOW);
+        moffitFloor2.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/moff-floorplan-3.pdf");
+        moffitFloor2.setLinkBooking("n/a");
+        moffitFloor2.setPhoneNumber("510-642-5072");
 
         moffitFloor3 = new FloorItem(moffitt);
         moffitFloor3.setName("Floor 4");
@@ -180,6 +202,9 @@ public class ScrollingActivity extends BaseActivity {
         moffitFloor3.setAllowsFood(true);
         moffitFloor3.setHasOutlets(true);
         moffitFloor3.setCrowdedness(Crowdedness.HIGH);
+        moffitFloor3.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/moff-floorplan-4.pdf");
+        moffitFloor3.setLinkBooking("http://berkeley.libcal.com/booking/moffitt-4");
+        moffitFloor3.setPhoneNumber("510-642-5072");
 
         moffitFloor4 = new FloorItem(moffitt);
         moffitFloor4.setName("Floor 5");
@@ -188,6 +213,9 @@ public class ScrollingActivity extends BaseActivity {
         moffitFloor4.setAllowsFood(true);
         moffitFloor4.setHasOutlets(true);
         moffitFloor4.setCrowdedness(Crowdedness.MEDIUM);
+        moffitFloor4.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/moff-floorplan-5.pdf");
+        moffitFloor4.setLinkBooking("http://berkeley.libcal.com/booking/moffitt-5");
+        moffitFloor4.setPhoneNumber("510-642-5072");
 
         moffitFloors.add(moffitFloor1);
         moffitFloors.add(moffitFloor2);
@@ -207,6 +235,9 @@ public class ScrollingActivity extends BaseActivity {
         kresgeFloor1.setAllowsFood(false);
         kresgeFloor1.setHasOutlets(true);
         kresgeFloor1.setCrowdedness(Crowdedness.MEDIUM);
+        kresgeFloor1.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/engi-floorplan.pdf");
+        kresgeFloor1.setLinkBooking("http://berkeley.libcal.com/booking/engi");
+        kresgeFloor1.setPhoneNumber("510-642-3366");
 
         kresgeFloor2 = new FloorItem(kresge);
         kresgeFloor2.setName("Floor 2");
@@ -215,6 +246,9 @@ public class ScrollingActivity extends BaseActivity {
         kresgeFloor2.setAllowsFood(false);
         kresgeFloor2.setHasOutlets(true);
         kresgeFloor2.setCrowdedness(Crowdedness.HIGH);
+        kresgeFloor2.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/engi-floorplan.pdf");
+        kresgeFloor2.setLinkBooking("http://berkeley.libcal.com/booking/engi");
+        kresgeFloor2.setPhoneNumber("510-642-33662");
 
         kresgeFloors.add(kresgeFloor1);
         kresgeFloors.add(kresgeFloor2);
@@ -232,6 +266,9 @@ public class ScrollingActivity extends BaseActivity {
         fsmFloor1.setAllowsFood(true);
         fsmFloor1.setHasOutlets(true);
         fsmFloor1.setCrowdedness(Crowdedness.HIGH);
+        fsmFloor1.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/engi-floorplan.pdf");
+        fsmFloor1.setLinkBooking("http://berkeley.libcal.com/booking/engi");
+        fsmFloor1.setPhoneNumber("510-666-0805");
 
         fsmFloors.add(fsmFloor1);
     }
