@@ -17,9 +17,11 @@ public class Response {
     }
 
     // properties
+    public void setID(String userID) { this.userID = userID; }
     public String getID() {
         return this.userID;
     }
+    public void setLibraryName(String library) { this.libraryName = library; }
     public String getLibraryName() {
         return this.libraryName;
     }
