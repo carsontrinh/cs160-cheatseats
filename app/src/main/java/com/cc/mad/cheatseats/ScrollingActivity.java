@@ -58,6 +58,10 @@ public class ScrollingActivity extends BaseActivity {
     }
 
     public void switchToFloorViewActivity(FloorItem floorItem) {
+
+        System.out.println("================");
+        System.out.println(floorItem.getName());
+
         Intent intent = new Intent(this, FloorViewActivity.class);
         intent.putExtra("FloorItem", floorItem);
         startActivity(intent);
@@ -164,13 +168,13 @@ public class ScrollingActivity extends BaseActivity {
         moffitFloor2.setHasOutlets(false);
         moffitFloor2.setCrowdedness(Crowdedness.LOW);
 
-        moffitFloor2 = new FloorItem(moffitt);
-        moffitFloor2.setName("Floor 4");
-        moffitFloor2.setHasGoodCellular(true);
-        moffitFloor2.setQuiet(false);
-        moffitFloor2.setAllowsFood(true);
-        moffitFloor2.setHasOutlets(true);
-        moffitFloor2.setCrowdedness(Crowdedness.HIGH);
+        moffitFloor3 = new FloorItem(moffitt);
+        moffitFloor3.setName("Floor 4");
+        moffitFloor3.setHasGoodCellular(true);
+        moffitFloor3.setQuiet(false);
+        moffitFloor3.setAllowsFood(true);
+        moffitFloor3.setHasOutlets(true);
+        moffitFloor3.setCrowdedness(Crowdedness.HIGH);
 
         moffitFloor4 = new FloorItem(moffitt);
         moffitFloor4.setName("Floor 5");
@@ -182,16 +186,16 @@ public class ScrollingActivity extends BaseActivity {
 
         moffitFloors.add(moffitFloor1);
         moffitFloors.add(moffitFloor2);
-        moffitFloors.add(moffitFloor2);
+        moffitFloors.add(moffitFloor3);
         moffitFloors.add(moffitFloor4);
 
         // ====================================
         // Kresge
         ArrayList<FloorItem> kresgeFloors = new ArrayList<>(1);
-        FloorItem kresgeFloor1;
+        FloorItem kresgeFloor1, kresgeFloor2;
         kresge.setFloors(kresgeFloors);
 
-        kresgeFloor1 = new FloorItem(moffitt);
+        kresgeFloor1 = new FloorItem(kresge);
         kresgeFloor1.setName("Floor 1");
         kresgeFloor1.setHasGoodCellular(false);
         kresgeFloor1.setQuiet(false);
@@ -199,7 +203,16 @@ public class ScrollingActivity extends BaseActivity {
         kresgeFloor1.setHasOutlets(true);
         kresgeFloor1.setCrowdedness(Crowdedness.MEDIUM);
 
+        kresgeFloor2 = new FloorItem(kresge);
+        kresgeFloor2.setName("Floor 2");
+        kresgeFloor2.setHasGoodCellular(false);
+        kresgeFloor2.setQuiet(false);
+        kresgeFloor2.setAllowsFood(false);
+        kresgeFloor2.setHasOutlets(true);
+        kresgeFloor2.setCrowdedness(Crowdedness.HIGH);
+
         kresgeFloors.add(kresgeFloor1);
+        kresgeFloors.add(kresgeFloor2);
 
         // ====================================
         // Freedom Speech Movement Cafe
@@ -207,7 +220,7 @@ public class ScrollingActivity extends BaseActivity {
         FloorItem fsmFloor1;
         fsm.setFloors(fsmFloors);
 
-        fsmFloor1 = new FloorItem(moffitt);
+        fsmFloor1 = new FloorItem(fsm);
         fsmFloor1.setName("Floor 1");
         fsmFloor1.setHasGoodCellular(true);
         fsmFloor1.setQuiet(false);

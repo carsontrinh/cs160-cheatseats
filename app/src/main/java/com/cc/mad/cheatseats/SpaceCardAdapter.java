@@ -38,6 +38,7 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
 
     @Override
     public void onBindViewHolder(@NonNull final SpaceCardViewHolder holder, int i) {
+        System.out.println("THE VALUE OF i::::: " + i);
         SpaceCardItem currentItem = cardList.get(i);
 
         holder.textView_parentName.setText(currentItem.getSpaceName());
