@@ -13,55 +13,48 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/floor_border"
-            android:padding="24dp"
             android:animateLayoutChanges="true"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/space_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingEnd="10dp"
-                android:layout_marginEnd="8dp"
-                app:srcCompat="@drawable/crowded_low" />
+            android:background="@drawable/floor_border"
+            android:orientation="vertical"
+            android:padding="24dp" >
 
             <TextView
                 android:id="@+id/space_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/space_status"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:text="Moffitt" />
+                android:text="Moffitt"
+                android:textSize="36sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/space_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/space_status"
                 android:layout_below="@+id/space_name"
-                android:textSize="14sp"
-                android:text="Library" />
+                android:layout_toEndOf="@+id/space_status"
+                android:text="Library"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/divider"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/space_type"
                 android:layout_below="@+id/space_name"
-                android:textSize="14sp"
-                android:text=", " />
+                android:layout_toEndOf="@+id/space_type"
+                android:text=", "
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/floor_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/divider"
                 android:layout_below="@+id/space_name"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:text="Floor 5" />
+                android:layout_toEndOf="@+id/divider"
+                android:text="Floor 5"
+                android:textAlignment="viewStart"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 

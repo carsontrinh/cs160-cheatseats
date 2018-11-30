@@ -92,7 +92,10 @@ public class ScrollingActivity extends BaseActivity {
         mainStacksFloor1.setQuiet(true);
         mainStacksFloor1.setAllowsFood(false);
         mainStacksFloor1.setHasOutlets(true);
-        mainStacksFloor1.setCrowdedness(Crowdedness.LOW);  // TODO: currently hardcoded...will need to fix eventually :c
+        mainStacksFloor1.setCrowdedness(Crowdedness.LOW);
+        mainStacksFloor1.setLinkFloorPlan("asdf");
+        mainStacksFloor1.setLinkBooking("asdf");
+        mainStacksFloor1.setLinkBooking("asdf");
 
         mainStacksFloor2 = new FloorItem(mainStacks);
         mainStacksFloor2.setName("Level C");

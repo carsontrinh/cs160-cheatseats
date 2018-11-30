@@ -12,6 +12,10 @@ public class FloorItem implements Serializable {
     private boolean hasOutlets;
     private Crowdedness crowdedness;
 
+    private String linkFloorPlan;
+    private String linkBooking;
+    private String phoneNumber;
+
     public FloorItem(SpaceCardItem spaceCardItem) {
         this.spaceCardItem = spaceCardItem;
     }
@@ -70,5 +74,29 @@ public class FloorItem implements Serializable {
 
     public void setCrowdedness(Crowdedness crowdedness) {
         this.crowdedness = crowdedness;
+    }
+
+    public String getLinkFloorPlan() {
+        return linkFloorPlan;
+    }
+
+    public void setLinkFloorPlan(String linkFloorPlan) {
+        this.linkFloorPlan = linkFloorPlan;
+    }
+
+    public String getLinkBooking() {
+        return linkBooking;
+    }
+
+    public void setLinkBooking(String linkBooking) {
+        this.linkBooking = linkBooking;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

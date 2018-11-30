@@ -30,7 +30,6 @@ public class FloorViewActivity extends BaseActivity {
         TextView textView_spaceType = findViewById(R.id.space_type);
         TextView textView_floorName = findViewById(R.id.floor_name);
         TextView textView_divider = findViewById(R.id.divider);
-        ImageView image = findViewById(R.id.imageView3);
 
         textView_spaceName.setText(spaceCardItem.getSpaceName());
         textView_spaceType.setText(spaceCardItem.getSpaceType());

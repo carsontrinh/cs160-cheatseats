@@ -13,38 +13,56 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="24dp"
             android:animateLayoutChanges="true"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="24dp">
 
             <TextView
                 android:id="@+id/hours_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:textSize="12dp"
-                android:text="Hours: Mon 8am-2am"/>
+                android:layout_marginTop="4dp"
+                android:text="Hours: Mon 8am-2am"
+                android:textSize="22sp" />
 
-
-            <LinearLayout
-                android:id="@+id/amenities"
+            <TextView
+                android:id="@+id/booking_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/hours_text"
-                android:layout_centerHorizontal="true"
-                android:orientation="horizontal">
+                android:layout_marginTop="4dp"
+                android:text="Book Room"
+                android:textSize="22sp" />
 
 
-
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/imageView3"
+            <TextView
+                android:id="@+id/floorplan_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/amenities"
+                android:layout_below="@+id/booking_text"
+                android:layout_marginTop="4dp"
+                android:text="Floor Plan"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/number_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/floorplan_text"
+                android:layout_marginTop="4dp"
+                android:text="(123) 456-7890"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:id="@+id/space_status"
+                android:layout_width="141dp"
+                android:layout_height="155dp"
+                android:layout_below="@+id/number_text"
+                android:layout_marginTop="64dp"
+                android:layout_centerHorizontal="true"
                 android:adjustViewBounds="true"
-                app:srcCompat="@drawable/example_map" />
+                app:srcCompat="@drawable/crowded_low" />
+
         </RelativeLayout>
 
     </LinearLayout>
