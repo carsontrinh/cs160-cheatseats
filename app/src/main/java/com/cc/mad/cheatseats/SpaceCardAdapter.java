@@ -1,6 +1,8 @@
 package com.cc.mad.cheatseats;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -35,11 +37,14 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SpaceCardViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull final SpaceCardViewHolder holder, int i) {
+        System.out.println("THE VALUE OF i::::: " + i);
         SpaceCardItem currentItem = cardList.get(i);
 
         holder.textView_parentName.setText(currentItem.getSpaceName());
         holder.textView_parentType.setText(currentItem.getSpaceType());
+
+        // First, we set some of the subfloor views to be invisible since there are extra.
 
         int noOfChildTextViews = holder.linearLayout_spaceItems.getChildCount();
         int noOfChild = currentItem.getFloors().size();
@@ -51,11 +56,24 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
                 currentFloorTextView.setVisibility(View.GONE);
             }
         }
-        for (int textViewIndex = 0; textViewIndex < noOfChild; textViewIndex++) {
-            LinearLayout currentLinearLayout = (LinearLayout) holder.linearLayout_spaceItems.getChildAt(textViewIndex);
+        for (int floorIndex = 0; floorIndex < noOfChild; floorIndex++) {
+            LinearLayout currentLinearLayout = (LinearLayout) holder.linearLayout_spaceItems.getChildAt(floorIndex);
             TextView currentFloorTextView = (TextView) currentLinearLayout.getChildAt(0);
-            currentFloorTextView.setText(currentItem.getFloors().get(textViewIndex).getName());  // TODO
+            currentFloorTextView.setText(currentItem.getFloors().get(floorIndex).getName());
+
+            final Context context = holder.context;
+            final FloorItem floor = currentItem.getFloors().get(floorIndex);
+
+            currentLinearLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((ScrollingActivity) context).switchToFloorViewActivity(floor);
+                }
+            });
         }
+
+
+        // Now, we set all the icons
 
         Context context2 = holder.context;
 
@@ -186,6 +204,13 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
         @Override
         public void onClick(View view) {
             System.out.println("CLICKED");
+            ImageView arrow = view.findViewById(R.id.expand_collapse);
+            if (arrow.getRotation() == 0F) {
+                arrow.setRotation(180F);
+            } else {
+                arrow.setRotation(0F);
+            }
+            System.out.println(arrow.getRotation());
             textView_parentName = view.findViewById(R.id.space_name);
             if (textView_parentName != null && textView_parentName.getId() == R.id.space_name) {
                 if (linearLayout_spaceItems.getVisibility() == View.VISIBLE) {
@@ -199,7 +224,9 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
                 LinearLayout ll_space = (LinearLayout) view;
                 TextView textViewClicked = (TextView) ll_space.getChildAt(0);
                 Toast.makeText(context, "" + textViewClicked.getText().toString(), Toast.LENGTH_SHORT).show();
+
             }
         }
+
     }
 }

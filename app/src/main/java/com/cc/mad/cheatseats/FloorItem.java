@@ -4,12 +4,25 @@ import java.io.Serializable;
 
 public class FloorItem implements Serializable {
 
+    private SpaceCardItem spaceCardItem;
     private String name;
     private boolean hasGoodCellular;
     private boolean isQuiet;  // consider changing to isNoisy?
     private boolean allowsFood;
     private boolean hasOutlets;
     private Crowdedness crowdedness;
+
+    public FloorItem(SpaceCardItem spaceCardItem) {
+        this.spaceCardItem = spaceCardItem;
+    }
+
+    public SpaceCardItem getSpaceCardItem() {
+        return spaceCardItem;
+    }
+
+    public void setSpaceCardItem(SpaceCardItem spaceCardItem) {
+        this.spaceCardItem = spaceCardItem;
+    }
 
     public String getName() {
         return name;
