@@ -18,51 +18,62 @@
             android:orientation="vertical"
             android:padding="24dp" >
 
-            <ImageView
-                android:id="@+id/space_status"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingEnd="10dp"
-                android:layout_marginEnd="8dp"
-                app:srcCompat="@drawable/crowded_low" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/space_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/space_status"
-                android:text="Moffitt"
-                android:textSize="36sp"
-                android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/space_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="18dp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/crowded_low" />
 
-            <TextView
-                android:id="@+id/space_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/space_name"
-                android:layout_toEndOf="@+id/space_status"
-                android:text="Library"
-                android:textSize="18sp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/divider"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/space_name"
-                android:layout_toEndOf="@+id/space_type"
-                android:text=", "
-                android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/floor_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/space_name"
-                android:layout_toEndOf="@+id/divider"
-                android:text="Floor 5"
-                android:textAlignment="viewStart"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/space_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Moffitt"
+                        android:textSize="36sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/space_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/space_name"
+                        android:text="Library"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/divider"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/space_name"
+                        android:layout_toEndOf="@+id/space_type"
+                        android:text=", "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/floor_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/space_name"
+                        android:layout_toEndOf="@+id/divider"
+                        android:text="Floor 5"
+                        android:textAlignment="viewStart"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+            </LinearLayout>
 
         </RelativeLayout>
 

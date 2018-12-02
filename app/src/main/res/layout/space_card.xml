@@ -36,7 +36,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="18dp"
-                app:srcCompat="@drawable/crowded_low"/>
+                app:srcCompat="@drawable/crowded_low"
+                android:layout_gravity="center_vertical"
+                />
 
             <TextView
                 android:id="@+id/space_name"
