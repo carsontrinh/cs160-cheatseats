@@ -4,7 +4,7 @@
     android:shape="oval">
 
     <solid
-        android:color="#F2C94C"/>
+        android:color="#FAD18D"/>
 
     <size
         android:width="45dp"

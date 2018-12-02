@@ -26,19 +26,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Already here? Tell us how crowded it is!"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:textStyle="" />
-
 
             <ImageView
                 android:id="@+id/rate_low"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_below="@+id/rating_prompt"
+                android:layout_centerInParent="true"
                 android:layout_marginStart="48dp"
+                android:layout_marginEnd="18dp"
                 android:layout_marginTop="36dp"
                 android:layout_marginBottom="24dp"
-                android:layout_toEndOf="@+id/rate_medium"
+                android:layout_toStartOf="@+id/rate_medium"
                 app:srcCompat="@drawable/crowded_low" />
 
             <ImageView
@@ -47,7 +48,10 @@
                 android:layout_height="64dp"
                 android:layout_below="@+id/rating_prompt"
                 android:layout_centerHorizontal="true"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
                 android:layout_marginTop="36dp"
+                android:layout_marginBottom="24dp"
                 app:srcCompat="@drawable/crowded_medium" />
 
             <ImageView
@@ -55,10 +59,11 @@
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_below="@+id/rating_prompt"
-                android:layout_centerInParent="true"
+                android:layout_marginStart="18dp"
                 android:layout_marginEnd="48dp"
                 android:layout_marginTop="36dp"
-                android:layout_toStartOf="@+id/rate_medium"
+                android:layout_marginBottom="24dp"
+                android:layout_toEndOf="@+id/rate_medium"
                 app:srcCompat="@drawable/crowded_high" />
 
 
