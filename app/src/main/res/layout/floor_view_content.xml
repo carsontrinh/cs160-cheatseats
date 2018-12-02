@@ -10,13 +10,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <RelativeLayout
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:animateLayoutChanges="true"
-            android:orientation="vertical"
-            android:padding="24dp">
+            android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/crowded_low"
+                android:layout_margin="10dp" />
             <TextView
                 android:id="@+id/hours_text"
                 android:layout_width="wrap_content"
@@ -24,6 +28,16 @@
                 android:layout_marginTop="4dp"
                 android:text="Hours: Mon 8am-2am"
                 android:textSize="22sp" />
+        </LinearLayout>
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical"
+            android:padding="24dp">
 
             <TextView
                 android:id="@+id/booking_text"
@@ -52,6 +66,8 @@
                 android:layout_marginTop="4dp"
                 android:text="(123) 456-7890"
                 android:textSize="22sp" />
+
+
 
         </RelativeLayout>
 

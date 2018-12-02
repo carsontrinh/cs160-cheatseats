@@ -8,10 +8,10 @@
     android:divider="@android:color/transparent"
     android:clipToPadding="false"
     android:clipChildren="false"
-    card_view:cardElevation="10dp"
+    card_view:cardElevation="40dp"
     card_view:cardPreventCornerOverlap="false"
-    app:cardCornerRadius="4dp"
-
+    app:cardCornerRadius="8dp"
+    android:animateLayoutChanges="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"

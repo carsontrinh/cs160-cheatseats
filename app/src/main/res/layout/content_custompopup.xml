@@ -21,8 +21,8 @@
         android:foreground="?android:attr/selectableItemBackground"
 
         app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="4dp"
-        card_view:cardElevation="10dp"
+        app:cardCornerRadius="8dp"
+        card_view:cardElevation="40dp"
         card_view:cardPreventCornerOverlap="false">
 
         <TextView

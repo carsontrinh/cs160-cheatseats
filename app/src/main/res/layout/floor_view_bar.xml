@@ -42,7 +42,7 @@
                 android:layout_below="@+id/space_name"
                 android:layout_toEndOf="@+id/space_status"
                 android:text="Library"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/divider"
@@ -51,7 +51,7 @@
                 android:layout_below="@+id/space_name"
                 android:layout_toEndOf="@+id/space_type"
                 android:text=", "
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/floor_name"
@@ -61,7 +61,7 @@
                 android:layout_toEndOf="@+id/divider"
                 android:text="Floor 5"
                 android:textAlignment="viewStart"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
         </RelativeLayout>
