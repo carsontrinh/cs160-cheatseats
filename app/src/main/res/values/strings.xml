@@ -16,6 +16,7 @@
     <string name="popular_times_button">Popular Times</string>
     <string name="book_rooms_button">Book Rooms</string>
     <string name="default_hours_text">Sunday, 9AM–12AM</string>
+    <string name="rating_message">Already here? Tell us how crowded it is!</string>
 
 
 </resources>
