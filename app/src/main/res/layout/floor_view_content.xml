@@ -10,6 +10,28 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/crowded_low"
+                android:layout_margin="10dp" />
+            <TextView
+                android:id="@+id/hours_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Hours: Mon 8am-2am"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -18,50 +40,33 @@
             android:padding="24dp">
 
             <TextView
-                android:id="@+id/hours_text"
+                android:id="@+id/book_rooms_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Hours: Mon 8am-2am"
-                android:textSize="22sp" />
-
-            <TextView
-                android:id="@+id/booking_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/hours_text"
                 android:layout_marginTop="4dp"
                 android:text="Book Room"
                 android:textSize="22sp" />
 
 
             <TextView
-                android:id="@+id/floorplan_text"
+                android:id="@+id/popular_times_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/booking_text"
+                android:layout_below="@+id/book_rooms_button"
                 android:layout_marginTop="4dp"
                 android:text="Floor Plan"
                 android:textSize="22sp" />
 
             <TextView
-                android:id="@+id/number_text"
+                android:id="@+id/phone_number_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/floorplan_text"
+                android:layout_below="@+id/popular_times_button"
                 android:layout_marginTop="4dp"
                 android:text="(123) 456-7890"
                 android:textSize="22sp" />
 
-            <ImageView
-                android:id="@+id/space_status"
-                android:layout_width="141dp"
-                android:layout_height="155dp"
-                android:layout_below="@+id/number_text"
-                android:layout_marginTop="64dp"
-                android:layout_centerHorizontal="true"
-                android:adjustViewBounds="true"
-                app:srcCompat="@drawable/crowded_low" />
+
 
         </RelativeLayout>
 

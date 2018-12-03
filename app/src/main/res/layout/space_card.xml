@@ -10,8 +10,8 @@
     android:clipChildren="false"
     card_view:cardElevation="10dp"
     card_view:cardPreventCornerOverlap="false"
-    app:cardCornerRadius="4dp"
-
+    app:cardCornerRadius="8dp"
+    android:animateLayoutChanges="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
@@ -35,8 +35,10 @@
                 android:id="@+id/space_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                app:srcCompat="@android:drawable/presence_online" />
+                android:layout_marginEnd="18dp"
+                app:srcCompat="@drawable/crowded_low"
+                android:layout_gravity="center_vertical"
+                />
 
             <TextView
                 android:id="@+id/space_name"
@@ -60,8 +62,9 @@
                 android:layout_width="27dp"
                 android:layout_height="18dp"
                 android:layout_alignParentEnd="true"
-                app:srcCompat="@drawable/expand"
+                app:srcCompat="@drawable/ic_round_expand_more_24px"
                 android:scaleType="centerCrop"
+
                 android:clickable="true"/>
 
         </RelativeLayout>
