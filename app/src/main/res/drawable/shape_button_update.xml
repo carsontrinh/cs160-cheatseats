@@ -5,7 +5,7 @@
     <item>
 
         <shape>
-            <solid android:color="#2F80ED" />
+            <solid android:color="@color/highlight_theme" />
 
             <padding
                 android:bottom="3dp"

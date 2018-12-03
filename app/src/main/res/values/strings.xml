@@ -10,7 +10,12 @@
     <string name="filter_message">Filter by:</string>
     <string name="apply_filter">Apply</string>
     <string name="reset_filter">Reset</string>
-    <string name="close_filter">X</string>
+    <string name="close_filter">✕</string>
+    <string name="floor_plans_button">Floor Plans</string>
+    <string name="phone_number_button">Call</string>
+    <string name="popular_times_button">Popular Times</string>
+    <string name="book_rooms_button">Book Rooms</string>
+    <string name="default_hours_text">Sunday, 9AM–12AM</string>
 
 
 </resources>

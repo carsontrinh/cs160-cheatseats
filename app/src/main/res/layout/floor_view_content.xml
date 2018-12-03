@@ -40,29 +40,28 @@
             android:padding="24dp">
 
             <TextView
-                android:id="@+id/booking_text"
+                android:id="@+id/book_rooms_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/hours_text"
                 android:layout_marginTop="4dp"
                 android:text="Book Room"
                 android:textSize="22sp" />
 
 
             <TextView
-                android:id="@+id/floorplan_text"
+                android:id="@+id/popular_times_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/booking_text"
+                android:layout_below="@+id/book_rooms_button"
                 android:layout_marginTop="4dp"
                 android:text="Floor Plan"
                 android:textSize="22sp" />
 
             <TextView
-                android:id="@+id/number_text"
+                android:id="@+id/phone_number_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/floorplan_text"
+                android:layout_below="@+id/popular_times_button"
                 android:layout_marginTop="4dp"
                 android:text="(123) 456-7890"
                 android:textSize="22sp" />
