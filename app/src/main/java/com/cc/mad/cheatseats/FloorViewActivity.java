@@ -1,10 +1,12 @@
 package com.cc.mad.cheatseats;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +16,7 @@ public class FloorViewActivity extends BaseActivity {
 
     SpaceCardItem spaceCardItem;
     FloorItem floorItem;
+    ImageButton button_ratingLow, button_ratingMedium, button_ratingHigh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +26,10 @@ public class FloorViewActivity extends BaseActivity {
         Intent intent = getIntent();
         floorItem = (FloorItem) intent.getSerializableExtra("FloorItem");
         spaceCardItem = floorItem.getSpaceCardItem();
+
+        button_ratingLow = findViewById(R.id.rate_low);
+        button_ratingMedium = findViewById(R.id.rate_medium);
+        button_ratingHigh = findViewById(R.id.rate_high);
 
         updateViews();
     }
@@ -83,5 +90,38 @@ public class FloorViewActivity extends BaseActivity {
     public void openWebURI(Uri uri) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(browserIntent);
+    }
+
+    public void selectAvailability(View v) {
+//        System.out.println(v.getId());
+//        this.setButtonOutlinesGrey();
+        Drawable unselected_border = getResources().getDrawable(R.drawable.selector_button_outline);
+        Drawable selected_border = getResources().getDrawable(R.drawable.button_border_selected);
+
+        String id = v.getResources().getResourceEntryName(v.getId());
+
+        if (id.equalsIgnoreCase("rate_low")) {
+            button_ratingMedium.setBackground(unselected_border);
+            button_ratingHigh.setBackground(unselected_border);
+        }
+
+        else if (id.equalsIgnoreCase("rate_medium")) {
+            button_ratingLow.setBackground(unselected_border);
+            button_ratingHigh.setBackground(unselected_border);
+        }
+
+        else if (id.equalsIgnoreCase("rate_high")) {
+            button_ratingMedium.setBackground(unselected_border);
+            button_ratingLow.setBackground(unselected_border);
+        }
+
+        v.setBackground(selected_border);
+    }
+
+    public void setButtonOutlinesGrey() {
+        Drawable unselected_border = getResources().getDrawable(R.drawable.selector_button_outline);
+        button_ratingLow.setBackground(unselected_border);
+        button_ratingMedium.setBackground(unselected_border);
+        button_ratingHigh.setBackground(unselected_border);
     }
 }

@@ -30,7 +30,8 @@
                 android:text="@string/rating_message"
                 android:textAlignment="center"
                 android:textSize="18sp"
-                android:textStyle="" />
+                android:textStyle=""
+                android:textColor="@color/grey_theme"/>
 
             <ImageView
                 android:id="@+id/rate_low"
