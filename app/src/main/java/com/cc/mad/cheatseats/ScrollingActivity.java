@@ -31,6 +31,7 @@ public class ScrollingActivity extends BaseActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<SpaceCardItem> spaces = new ArrayList<>();
+    private ArrayList<SpaceCardItem> filtered = new ArrayList<>();
     private Context mContext;
 
     // For filtering
