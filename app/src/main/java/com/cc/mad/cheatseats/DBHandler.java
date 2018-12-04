@@ -61,9 +61,18 @@ public class DBHandler extends SQLiteOpenHelper {
         return count;
     }
 
-    public long getTotalCount() {
+    public int getTotalCount(String libraryID) {
         SQLiteDatabase db = this.getReadableDatabase();
-        long count = DatabaseUtils.queryNumEntries(db, TABLE_DETAIL);
+        Cursor cursor = db.rawQuery("SELECT  COUNT(*) FROM " + TABLE_DETAIL + " WHERE "
+                + KEY_LIBRARY + "=?", new String[]{libraryID});
+        int count = 0;
+        if (null != cursor) {
+            if (cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                count = cursor.getInt(0);
+            }
+            cursor.close();
+        }
         db.close();
         return count;
     }

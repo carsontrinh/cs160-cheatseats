@@ -6,8 +6,7 @@ package com.cc.mad.cheatseats;
  * MEDIUM - busy, finding a seat should be doable
  * HIGH - very crowded, finding a seat could be impossible
  */
-public enum Crowdedness {
-    LOW,
-    MEDIUM,
-    HIGH
+public class Crowdedness {
+    protected static double LOWER_THRESHOLD = 20;
+    protected static double UPPER_THRESHOLD = 80;
 }

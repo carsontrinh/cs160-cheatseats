@@ -1,5 +1,7 @@
 package com.cc.mad.cheatseats;
 
+import android.widget.ImageView;
+
 import java.io.Serializable;
 
 public class FloorItem implements Serializable {
@@ -10,7 +12,9 @@ public class FloorItem implements Serializable {
     private boolean isQuiet;  // consider changing to isNoisy?
     private boolean allowsFood;
     private boolean hasOutlets;
-    private Crowdedness crowdedness;
+    private double crowdedness;
+
+    private ImageView statusImage;
 
     private String linkFloorPlan;
     private String linkBooking;
@@ -18,6 +22,7 @@ public class FloorItem implements Serializable {
 
     public FloorItem(SpaceCardItem spaceCardItem) {
         this.spaceCardItem = spaceCardItem;
+        //crowdedness = 0;
     }
 
     public SpaceCardItem getSpaceCardItem() {
@@ -31,6 +36,10 @@ public class FloorItem implements Serializable {
     public String getName() {
         return name;
     }
+
+    public ImageView getStatusImage(){return statusImage;}
+
+    public void setStatusImage(ImageView sI){this.statusImage=sI;}
 
     public void setName(String name) {
         this.name = name;
@@ -68,11 +77,11 @@ public class FloorItem implements Serializable {
         this.hasOutlets = hasOutlets;
     }
 
-    public Crowdedness getCrowdedness() {
+    public double getCrowdedness() {
         return crowdedness;
     }
 
-    public void setCrowdedness(Crowdedness crowdedness) {
+    public void setCrowdedness(double crowdedness) {
         this.crowdedness = crowdedness;
     }
 

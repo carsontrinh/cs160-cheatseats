@@ -71,12 +71,5 @@
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/crowded_high" />
 
-            <TextView
-                android:id="@+id/select_low"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rating_prompt"
-                android:layout_centerHorizontal="true"
-                android:text="" />
 
 </android.support.constraint.ConstraintLayout>
