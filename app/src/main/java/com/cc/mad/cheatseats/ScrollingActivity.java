@@ -534,6 +534,7 @@ public class ScrollingActivity extends BaseActivity {
             SpaceCardItem filteredSpace = new SpaceCardItem(space.getSpaceName(), space.getSpaceType());
             ArrayList<FloorItem> filteredFloors = new ArrayList<>();
             filteredSpace.setFloors(filteredFloors);
+            filteredSpace.setCrowdedness(space.getCrowdedness());
             for (FloorItem floor : space.getFloors()) {
                 if (passesFilter(floor)) {
                     filteredFloors.add(floor);
