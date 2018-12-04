@@ -7,7 +7,7 @@
     <string name="noise_level">Quiet</string>
     <string name="food_allowed">Food Allowed</string>
     <string name="outlets">Outlets</string>
-    <string name="filter_message">Filter by:</string>
+    <string name="filter_message">Filter by</string>
     <string name="apply_filter">Apply</string>
     <string name="reset_filter">Reset</string>
     <string name="close_filter">✕</string>

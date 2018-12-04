@@ -46,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/space_status"
                 android:textSize="18sp"
+                android:textColor="@color/grey_theme"
                 android:text="Main Stacks" />
 
             <TextView
@@ -55,6 +56,7 @@
                 android:layout_toEndOf="@+id/space_status"
                 android:layout_below="@+id/space_name"
                 android:textSize="12sp"
+                android:textColor="@color/grey_theme"
                 android:text="Library" />
 
             <ImageView
