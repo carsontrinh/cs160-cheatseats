@@ -27,11 +27,11 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="125dp"
                 android:paddingStart="40dp"
                 android:paddingEnd="40dp"
                 android:paddingBottom="30dp"
-                app:srcCompat="@drawable/cheat_seats" />
+                app:srcCompat="@drawable/cheatseats_logo" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
