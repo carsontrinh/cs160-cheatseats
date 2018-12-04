@@ -1,5 +1,6 @@
 package com.cc.mad.cheatseats;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -43,6 +44,14 @@ public class ScrollingActivity extends BaseActivity {
     Dialog myDialog;
 
     @Override
+    protected void onResume(){
+        super.onResume();
+        spaces = new ArrayList<>();
+        fillSpaces();
+        fillSpaceCards();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
@@ -53,6 +62,8 @@ public class ScrollingActivity extends BaseActivity {
         fillSpaces();
         fillSpaceCards();
         myDialog = new Dialog(this);
+
+
     }
 
     public void switchToFloorViewActivity(FloorItem floorItem) {
@@ -66,6 +77,11 @@ public class ScrollingActivity extends BaseActivity {
     }
 
     private void fillSpaces(){
+
+        DBHandler dbHandler = new DBHandler(mContext);
+
+        String libraryID;
+        double status;
 
         SpaceCardItem mainStacks, doe, moffitt, kresge, fsm;
         mainStacks = new SpaceCardItem("Main Stacks", "Library");
@@ -81,6 +97,7 @@ public class ScrollingActivity extends BaseActivity {
         ArrayList<FloorItem> mainStacksFloors = new ArrayList<>(3);
         FloorItem mainStacksFloor1, mainStacksFloor2, mainStacksFloor3;
         mainStacks.setFloors(mainStacksFloors);
+        double mainStacksC = 0;
 
         mainStacksFloor1 = new FloorItem(mainStacks);
         mainStacksFloor1.setName("Level B");
@@ -88,10 +105,18 @@ public class ScrollingActivity extends BaseActivity {
         mainStacksFloor1.setQuiet(true);
         mainStacksFloor1.setAllowsFood(false);
         mainStacksFloor1.setHasOutlets(true);
-        mainStacksFloor1.setCrowdedness(Crowdedness.LOW);
+        //mainStacksFloor1.setCrowdedness(0);
         mainStacksFloor1.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/stacks_b.pdf");
         mainStacksFloor1.setLinkBooking("http://berkeley.libcal.com/booking/gardner");
         mainStacksFloor1.setPhoneNumber("510-643-4331");
+        libraryID = String.valueOf(mainStacks.getSpaceName()) + String.valueOf(mainStacksFloor1.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        mainStacksC += status;
+        mainStacksFloor1.setCrowdedness(status);
 
         mainStacksFloor2 = new FloorItem(mainStacks);
         mainStacksFloor2.setName("Level C");
@@ -99,10 +124,18 @@ public class ScrollingActivity extends BaseActivity {
         mainStacksFloor2.setQuiet(true);
         mainStacksFloor2.setAllowsFood(false);
         mainStacksFloor2.setHasOutlets(true);
-        mainStacksFloor2.setCrowdedness(Crowdedness.MEDIUM);
+        //mainStacksFloor2.setCrowdedness(0);
         mainStacksFloor2.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/stacks_c.pdf");
         mainStacksFloor2.setLinkBooking("http://berkeley.libcal.com/booking/gardner");
         mainStacksFloor2.setPhoneNumber("510-643-4331");
+        libraryID = String.valueOf(mainStacks.getSpaceName()) + String.valueOf(mainStacksFloor2.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        mainStacksC += status;
+        mainStacksFloor2.setCrowdedness(status);
 
         mainStacksFloor3 = new FloorItem(mainStacks);
         mainStacksFloor3.setName("Level D");
@@ -110,20 +143,33 @@ public class ScrollingActivity extends BaseActivity {
         mainStacksFloor3.setQuiet(true);
         mainStacksFloor3.setAllowsFood(false);
         mainStacksFloor3.setHasOutlets(true);
-        mainStacksFloor3.setCrowdedness(Crowdedness.LOW);
+        //mainStacksFloor3.setCrowdedness(0);
         mainStacksFloor3.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/stacks_d.pdf");
         mainStacksFloor3.setLinkBooking("http://berkeley.libcal.com/booking/gardner");
         mainStacksFloor3.setPhoneNumber("510-643-4331");
+        libraryID = String.valueOf(mainStacks.getSpaceName()) + String.valueOf(mainStacksFloor3.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        mainStacksC += status;
+        mainStacksFloor3.setCrowdedness(status);
+
+        mainStacksC /= 3;
 
         mainStacksFloors.add(mainStacksFloor1);
         mainStacksFloors.add(mainStacksFloor2);
         mainStacksFloors.add(mainStacksFloor3);
+
+        mainStacks.setCrowdedness(mainStacksC);
 
         // ====================================
         // Doe
         ArrayList<FloorItem> doeFloors = new ArrayList<>(3);
         FloorItem doeFloor1, doeFloor2, doeFloor3;
         doe.setFloors(doeFloors);
+        double doeC = 0;
 
         doeFloor1 = new FloorItem(doe);
         doeFloor1.setName("North Reading Room");
@@ -131,10 +177,18 @@ public class ScrollingActivity extends BaseActivity {
         doeFloor1.setQuiet(true);
         doeFloor1.setAllowsFood(false);
         doeFloor1.setHasOutlets(true);
-        doeFloor1.setCrowdedness(Crowdedness.LOW);
+        //doeFloor1.setCrowdedness(0);
         doeFloor1.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/doe_2.pdf");
         doeFloor1.setLinkBooking("");
         doeFloor1.setPhoneNumber("510-642-6657");
+        libraryID = String.valueOf(doe.getSpaceName()) + String.valueOf(doeFloor1.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        doeFloor1.setCrowdedness(status);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        doeC += status;
 
         doeFloor2 = new FloorItem(doe);
         doeFloor2.setName("Rosberg Reading Room");
@@ -142,10 +196,18 @@ public class ScrollingActivity extends BaseActivity {
         doeFloor2.setQuiet(true);
         doeFloor2.setAllowsFood(false);
         doeFloor2.setHasOutlets(true);
-        doeFloor2.setCrowdedness(Crowdedness.LOW);
+        //doeFloor2.setCrowdedness(0);
         doeFloor2.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/rosberg.pdf");
         doeFloor2.setLinkBooking("");
         doeFloor2.setPhoneNumber("510-642-6657");
+        libraryID = String.valueOf(doe.getSpaceName()) + String.valueOf(doeFloor2.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        doeFloor2.setCrowdedness(status);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        doeC += status;
 
         doeFloor3 = new FloorItem(doe);
         doeFloor3.setName("Heyns Reading Room");
@@ -153,21 +215,32 @@ public class ScrollingActivity extends BaseActivity {
         doeFloor3.setQuiet(true);
         doeFloor3.setAllowsFood(false);
         doeFloor3.setHasOutlets(true);
-        doeFloor3.setCrowdedness(Crowdedness.LOW);
+        //doeFloor3.setCrowdedness(0);
         doeFloor3.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/heyns.pdf");
         doeFloor3.setLinkBooking("");
         doeFloor3.setPhoneNumber("510-642-6657");
+        libraryID = String.valueOf(doe.getSpaceName()) + String.valueOf(doeFloor3.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        doeFloor3.setCrowdedness(status);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        doeC += status;
 
+        doeC /= 3;
 
         doeFloors.add(doeFloor1);
         doeFloors.add(doeFloor2);
         doeFloors.add(doeFloor3);
+        doe.setCrowdedness(doeC);
 
         // ====================================
         // Moffitt
         ArrayList<FloorItem> moffitFloors = new ArrayList<>(4);
         FloorItem moffitFloor1, moffitFloor2, moffitFloor3, moffitFloor4;
         moffitt.setFloors(moffitFloors);
+        double moffitC = 0;
 
         moffitFloor1 = new FloorItem(moffitt);
         moffitFloor1.setName("Floor 1");
@@ -175,10 +248,18 @@ public class ScrollingActivity extends BaseActivity {
         moffitFloor1.setQuiet(false);
         moffitFloor1.setAllowsFood(true);
         moffitFloor1.setHasOutlets(true);
-        moffitFloor1.setCrowdedness(Crowdedness.MEDIUM);
+        //moffitFloor1.setCrowdedness(0);
         moffitFloor1.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/moff-floorplan-1.pdf");
         moffitFloor1.setLinkBooking("");
         moffitFloor1.setPhoneNumber("510-642-5072");
+        libraryID = String.valueOf(moffitt.getSpaceName()) + String.valueOf(moffitFloor1.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        moffitFloor1.setCrowdedness(status);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        moffitC += status;
 
         moffitFloor2 = new FloorItem(moffitt);
         moffitFloor2.setName("Floor 3");
@@ -186,10 +267,18 @@ public class ScrollingActivity extends BaseActivity {
         moffitFloor2.setQuiet(true);
         moffitFloor2.setAllowsFood(true);
         moffitFloor2.setHasOutlets(false);
-        moffitFloor2.setCrowdedness(Crowdedness.LOW);
+        //moffitFloor2.setCrowdedness(0);
         moffitFloor2.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/moff-floorplan-3.pdf");
         moffitFloor2.setLinkBooking("");
         moffitFloor2.setPhoneNumber("510-642-5072");
+        libraryID = String.valueOf(moffitt.getSpaceName()) + String.valueOf(moffitFloor2.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        moffitFloor2.setCrowdedness(status);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        moffitC += status;
 
         moffitFloor3 = new FloorItem(moffitt);
         moffitFloor3.setName("Floor 4");
@@ -197,10 +286,18 @@ public class ScrollingActivity extends BaseActivity {
         moffitFloor3.setQuiet(false);
         moffitFloor3.setAllowsFood(true);
         moffitFloor3.setHasOutlets(true);
-        moffitFloor3.setCrowdedness(Crowdedness.HIGH);
+        //moffitFloor3.setCrowdedness(0);
         moffitFloor3.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/moff-floorplan-4.pdf");
         moffitFloor3.setLinkBooking("http://berkeley.libcal.com/booking/moffitt-4");
         moffitFloor3.setPhoneNumber("510-642-5072");
+        libraryID = String.valueOf(moffitt.getSpaceName()) + String.valueOf(moffitFloor3.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        moffitFloor3.setCrowdedness(status);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        moffitC += status;
 
         moffitFloor4 = new FloorItem(moffitt);
         moffitFloor4.setName("Floor 5");
@@ -208,21 +305,34 @@ public class ScrollingActivity extends BaseActivity {
         moffitFloor4.setQuiet(true);
         moffitFloor4.setAllowsFood(true);
         moffitFloor4.setHasOutlets(true);
-        moffitFloor4.setCrowdedness(Crowdedness.MEDIUM);
+        //moffitFloor4.setCrowdedness(0);
         moffitFloor4.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/moff-floorplan-5.pdf");
         moffitFloor4.setLinkBooking("http://berkeley.libcal.com/booking/moffitt-5");
         moffitFloor4.setPhoneNumber("510-642-5072");
+        libraryID = String.valueOf(moffitt.getSpaceName()) + String.valueOf(moffitFloor4.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        moffitFloor4.setCrowdedness(status);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        moffitC += status;
+
+        moffitC /= 4;
 
         moffitFloors.add(moffitFloor1);
         moffitFloors.add(moffitFloor2);
         moffitFloors.add(moffitFloor3);
         moffitFloors.add(moffitFloor4);
 
+        moffitt.setCrowdedness(moffitC);
+
         // ====================================
         // Kresge
         ArrayList<FloorItem> kresgeFloors = new ArrayList<>(1);
         FloorItem kresgeFloor1, kresgeFloor2;
         kresge.setFloors(kresgeFloors);
+        double kresgeC = 0;
 
         kresgeFloor1 = new FloorItem(kresge);
         kresgeFloor1.setName("Floor 1");
@@ -230,10 +340,18 @@ public class ScrollingActivity extends BaseActivity {
         kresgeFloor1.setQuiet(false);
         kresgeFloor1.setAllowsFood(false);
         kresgeFloor1.setHasOutlets(true);
-        kresgeFloor1.setCrowdedness(Crowdedness.MEDIUM);
+        //kresgeFloor1.setCrowdedness(0);
         kresgeFloor1.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/engi-floorplan.pdf");
         kresgeFloor1.setLinkBooking("http://berkeley.libcal.com/booking/engi");
         kresgeFloor1.setPhoneNumber("510-642-3366");
+        libraryID = String.valueOf(kresge.getSpaceName()) + String.valueOf(kresgeFloor1.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        kresgeFloor1.setCrowdedness(status);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        kresgeC += status;
 
         kresgeFloor2 = new FloorItem(kresge);
         kresgeFloor2.setName("Floor 2");
@@ -241,13 +359,25 @@ public class ScrollingActivity extends BaseActivity {
         kresgeFloor2.setQuiet(false);
         kresgeFloor2.setAllowsFood(false);
         kresgeFloor2.setHasOutlets(true);
-        kresgeFloor2.setCrowdedness(Crowdedness.HIGH);
+        kresgeFloor2.setCrowdedness(90);
         kresgeFloor2.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/engi-floorplan.pdf");
         kresgeFloor2.setLinkBooking("http://berkeley.libcal.com/booking/engi");
         kresgeFloor2.setPhoneNumber("510-642-3366");
+        libraryID = String.valueOf(kresge.getSpaceName()) + String.valueOf(kresgeFloor2.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        kresgeFloor2.setCrowdedness(status);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        kresgeC += status;
 
         kresgeFloors.add(kresgeFloor1);
         kresgeFloors.add(kresgeFloor2);
+
+        kresgeC /= 2;
+
+        kresge.setCrowdedness(kresgeC);
 
         // ====================================
         // Freedom Speech Movement Cafe
@@ -261,10 +391,19 @@ public class ScrollingActivity extends BaseActivity {
         fsmFloor1.setQuiet(false);
         fsmFloor1.setAllowsFood(true);
         fsmFloor1.setHasOutlets(true);
-        fsmFloor1.setCrowdedness(Crowdedness.HIGH);
+        //fsmFloor1.setCrowdedness(0);
         fsmFloor1.setLinkFloorPlan("");
         fsmFloor1.setLinkBooking("");
         fsmFloor1.setPhoneNumber("510-666-0805");
+        libraryID = String.valueOf(fsm.getSpaceName()) + String.valueOf(fsmFloor1.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        fsmFloor1.setCrowdedness(status);
+
+        fsm.setCrowdedness(status);
 
         fsmFloors.add(fsmFloor1);
     }

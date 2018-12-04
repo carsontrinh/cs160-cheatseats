@@ -42,6 +42,22 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
         System.out.println("THE VALUE OF i::::: " + i);
         SpaceCardItem currentItem = cardList.get(i);
 
+        double space_status = currentItem.getCrowdedness();
+        ImageView img_space_status = holder.space_status;
+
+        if (space_status <= Crowdedness.LOWER_THRESHOLD) {
+            img_space_status.setImageResource(R.drawable.crowded_low);
+        }
+
+        if (space_status > Crowdedness.LOWER_THRESHOLD && space_status < Crowdedness.UPPER_THRESHOLD) {
+            img_space_status.setImageResource(R.drawable.crowded_medium);
+        }
+
+        if (space_status >= Crowdedness.UPPER_THRESHOLD) {
+            img_space_status.setImageResource(R.drawable.crowded_high);
+        }
+
+
         holder.textView_parentName.setText(currentItem.getSpaceName());
         holder.textView_parentType.setText(currentItem.getSpaceType());
 
@@ -97,8 +113,10 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
             System.out.println(currentSpace.getSpaceName());
             System.out.println(floor.getName());
 
-            Crowdedness status = floor.getCrowdedness();
+            double status = floor.getCrowdedness();
             ImageView img_status;
+
+
 
             cellular = floor.hasGoodCellular();
             noise = floor.isQuiet();
@@ -119,6 +137,7 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
             img_power = itemView.findViewById(R.id.power_status);
             img_status = itemView.findViewById(R.id.floor_status);
 
+            //floor.setStatusImage(img_status);
 
 
             if (cellular) {
@@ -137,15 +156,15 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
                 img_power.setAlpha(1.0f);
             }
 
-            if (status == Crowdedness.LOW) {
+            if (status <= Crowdedness.LOWER_THRESHOLD) {
                 img_status.setImageResource(R.drawable.small_crowded_low);
             }
 
-            if (status == Crowdedness.MEDIUM) {
+            if (status > Crowdedness.LOWER_THRESHOLD && status < Crowdedness.UPPER_THRESHOLD) {
                 img_status.setImageResource(R.drawable.small_crowded_medium);
             }
 
-            if (status == Crowdedness.HIGH) {
+            if (status >= Crowdedness.UPPER_THRESHOLD) {
                 img_status.setImageResource(R.drawable.small_crowded_high);
             }
 
@@ -163,6 +182,7 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
         private Context context;
         private TextView textView_parentName;
         private TextView textView_parentType;
+        private ImageView space_status;
         private LinearLayout linearLayout_spaceItems;
 
         SpaceCardViewHolder (@NonNull View itemView) {
@@ -172,6 +192,7 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
 
             textView_parentName = itemView.findViewById(R.id.space_name);
             textView_parentType = itemView.findViewById(R.id.space_type);
+            space_status = itemView.findViewById(R.id.space_status);
 
             linearLayout_spaceItems = itemView.findViewById(R.id.ll_space_items);
             linearLayout_spaceItems.setVisibility(View.GONE);

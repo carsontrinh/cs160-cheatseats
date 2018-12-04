@@ -8,12 +8,16 @@ public class SpaceCardItem implements Serializable {
     private String spaceName;
     private String spaceType;
     private ArrayList<FloorItem> floors;
+    private double crowdedness;
 
     SpaceCardItem(String spaceName, String spaceType){
         this.spaceName = spaceName;
         this.spaceType = spaceType;
     }
 
+    public double getCrowdedness(){return crowdedness;}
+
+    public void setCrowdedness(double c){this.crowdedness = c;}
 
     public String getSpaceName() {
         return spaceName;

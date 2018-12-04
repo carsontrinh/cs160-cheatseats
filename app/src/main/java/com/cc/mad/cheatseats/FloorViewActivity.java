@@ -33,7 +33,23 @@ public class FloorViewActivity extends BaseActivity {
         button_ratingMedium = findViewById(R.id.rate_medium);
         button_ratingHigh = findViewById(R.id.rate_high);
 
-        final TextView select_low = findViewById(R.id.select_low);
+        ImageView img_status = findViewById(R.id.space_status);
+        double status = floorItem.getCrowdedness();
+
+
+        if (status <= Crowdedness.LOWER_THRESHOLD) {
+            img_status.setImageResource(R.drawable.crowded_low);
+        }
+
+        if (status > Crowdedness.LOWER_THRESHOLD && status < Crowdedness.UPPER_THRESHOLD) {
+            img_status.setImageResource(R.drawable.crowded_medium);
+        }
+
+        if (status >= Crowdedness.UPPER_THRESHOLD) {
+            img_status.setImageResource(R.drawable.crowded_high);
+        }
+
+
         final String userID = "TEMP";
         final String libraryID = String.valueOf(spaceCardItem.getSpaceName()) + String.valueOf(floorItem.getName());
         button_ratingLow.setOnClickListener(new View.OnClickListener() {
@@ -43,8 +59,30 @@ public class FloorViewActivity extends BaseActivity {
                 DBHandler dbHandler = new DBHandler(FloorViewActivity.this);
                 Response data = new Response(0, libraryID, userID);
                 dbHandler.addHandler(data);
-                String output = "Rated - Low, count: " + dbHandler.getCount(0, libraryID);
-                select_low.setText(output);
+
+
+                double status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+                status = status/dbHandler.getTotalCount(libraryID);
+                floorItem.setCrowdedness(status);
+                status = floorItem.getCrowdedness();
+
+                floorItem.setAllowsFood(true);
+
+                ImageView img_status = findViewById(R.id.space_status);
+
+                if (status <= Crowdedness.LOWER_THRESHOLD) {
+                    img_status.setImageResource(R.drawable.crowded_low);
+                }
+
+                if (status > Crowdedness.LOWER_THRESHOLD && status < Crowdedness.UPPER_THRESHOLD) {
+                    img_status.setImageResource(R.drawable.crowded_medium);
+                }
+
+                if (status >= Crowdedness.UPPER_THRESHOLD) {
+                    img_status.setImageResource(R.drawable.crowded_high);
+                }
+
+                dbHandler.close();
             }
         });
 
@@ -55,8 +93,26 @@ public class FloorViewActivity extends BaseActivity {
                 DBHandler dbHandler = new DBHandler(FloorViewActivity.this);
                 Response data = new Response(1, libraryID, userID);
                 dbHandler.addHandler(data);
-                String output = "Rated - Medium, count: " + dbHandler.getCount(1, libraryID);
-                select_low.setText(output);
+
+                double status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+                status = status/dbHandler.getTotalCount(libraryID);
+                floorItem.setCrowdedness(status);
+
+                ImageView img_status = findViewById(R.id.space_status);
+
+                if (status <= Crowdedness.LOWER_THRESHOLD) {
+                    img_status.setImageResource(R.drawable.crowded_low);
+                }
+
+                if (status > Crowdedness.LOWER_THRESHOLD && status < Crowdedness.UPPER_THRESHOLD) {
+                    img_status.setImageResource(R.drawable.crowded_medium);
+                }
+
+                if (status >= Crowdedness.UPPER_THRESHOLD) {
+                    img_status.setImageResource(R.drawable.crowded_high);
+                }
+
+
                 dbHandler.close();
             }
         });
@@ -67,8 +123,26 @@ public class FloorViewActivity extends BaseActivity {
                 DBHandler dbHandler = new DBHandler(FloorViewActivity.this);
                 Response data = new Response(2, libraryID, userID);
                 dbHandler.addHandler(data);
-                String output = "Rated - High, count: " + dbHandler.getCount(2, libraryID);
-                select_low.setText(output);
+                double status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+                status = status/dbHandler.getTotalCount(libraryID);
+                floorItem.setCrowdedness(status);
+
+                ImageView img_status = findViewById(R.id.space_status);
+
+                if (status <= Crowdedness.LOWER_THRESHOLD) {
+                    img_status.setImageResource(R.drawable.crowded_low);
+                }
+
+                if (status > Crowdedness.LOWER_THRESHOLD && status < Crowdedness.UPPER_THRESHOLD) {
+                    img_status.setImageResource(R.drawable.crowded_medium);
+                }
+
+                if (status >= Crowdedness.UPPER_THRESHOLD) {
+                    img_status.setImageResource(R.drawable.crowded_high);
+                }
+
+                dbHandler.close();
+
             }
         });
 
