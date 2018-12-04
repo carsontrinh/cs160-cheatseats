@@ -50,6 +50,7 @@ public class ScrollingActivity extends BaseActivity {
         spaces = new ArrayList<>();
         fillSpaces();
         fillSpaceCards();
+        setFilteredspaces();
     }
 
     @Override
