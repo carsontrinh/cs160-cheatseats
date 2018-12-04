@@ -5,15 +5,18 @@
     <item>
 
         <shape>
-            <solid android:color="@color/highlight_theme" />
+            <solid android:color="@color/disabled_button_theme" />
 
             <padding
-                android:bottom="3dp"
+                android:bottom="4dp"
                 android:left="40dp"
                 android:right="40dp"
-                android:top="3dp" />
+                android:top="4dp" />
 
             <corners android:radius="32dp" />
+            <stroke
+                android:width="3dp"
+                android:color="@color/highlight_theme" />
 
         </shape>
     </item>

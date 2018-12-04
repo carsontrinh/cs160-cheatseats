@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:animateLayoutChanges="true"
+            android:background="@drawable/floor_border_upsidedown"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center">
+
+
+            <TextView
+                android:id="@+id/rating_prompt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/rating_message"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="" />
+
+            <ImageView
+                android:id="@+id/rate_low"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_below="@+id/rating_prompt"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="48dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginBottom="24dp"
+                android:layout_toStartOf="@+id/rate_medium"
+                app:srcCompat="@drawable/crowded_low" />
+
+            <ImageView
+                android:id="@+id/rate_medium"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_below="@+id/rating_prompt"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginBottom="24dp"
+                app:srcCompat="@drawable/crowded_medium" />
+
+            <ImageView
+                android:id="@+id/rate_high"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_below="@+id/rating_prompt"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="48dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginBottom="24dp"
+                android:layout_toEndOf="@+id/rate_medium"
+                app:srcCompat="@drawable/crowded_high" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

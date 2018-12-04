@@ -3,9 +3,6 @@ package com.cc.mad.cheatseats;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -17,14 +14,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Objects;
 
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -310,12 +306,12 @@ public class ScrollingActivity extends BaseActivity {
 
 
     public void ShowPopup(View v) {
-        TextView txtclose;
+        ImageButton button_close;
         final ToggleButton cellular, quiet, food, outlets;
         Button filter, reset;
         myDialog.setContentView(R.layout.content_custompopup);
-        txtclose = (TextView) myDialog.findViewById(R.id.txtclose);
-        txtclose.setOnClickListener(new View.OnClickListener() {
+        button_close = (ImageButton) myDialog.findViewById(R.id.button_close);
+        button_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 myDialog.dismiss();
