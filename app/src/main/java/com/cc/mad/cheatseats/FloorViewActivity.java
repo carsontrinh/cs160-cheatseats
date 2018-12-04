@@ -29,6 +29,23 @@ public class FloorViewActivity extends BaseActivity {
         floorItem = (FloorItem) intent.getSerializableExtra("FloorItem");
         spaceCardItem = floorItem.getSpaceCardItem();
 
+
+        if(floorItem.hasGoodCellular()){
+            findViewById(R.id.cellular_status).setAlpha(1f);
+        }
+
+        if(floorItem.isQuiet()){
+            findViewById(R.id.noise_status).setAlpha(1f);
+        }
+
+        if(floorItem.allowsFood()){
+            findViewById(R.id.food_status).setAlpha(1f);
+        }
+
+        if(floorItem.hasOutlets()){
+            findViewById(R.id.power_status).setAlpha(1f);
+        }
+
         button_ratingLow = findViewById(R.id.rate_low);
         button_ratingMedium = findViewById(R.id.rate_medium);
         button_ratingHigh = findViewById(R.id.rate_high);
