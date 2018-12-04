@@ -19,6 +19,8 @@ import java.util.Comparator;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
@@ -455,6 +457,9 @@ public class ScrollingActivity extends BaseActivity {
         button_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Animation slide_down = AnimationUtils.loadAnimation(getApplicationContext(),
+                        R.anim.slide_down);
+                myDialog.findViewById(R.id.popup_frame_layout).startAnimation(slide_down);
                 myDialog.dismiss();
             }
         });
@@ -526,6 +531,10 @@ public class ScrollingActivity extends BaseActivity {
             }
         });
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        Animation slide_up = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slide_up);
+        myDialog.findViewById(R.id.popup_frame_layout).startAnimation(slide_up);
         myDialog.show();
     }
 
