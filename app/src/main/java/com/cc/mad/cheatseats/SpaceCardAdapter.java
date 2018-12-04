@@ -55,7 +55,8 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
             LinearLayout currentLinearLayout = (LinearLayout) holder.linearLayout_spaceItems.getChildAt(floorIndex);
             TextView currentFloorTextView = (TextView) currentLinearLayout.getChildAt(0);
             currentFloorTextView.setText(currentItem.getFloors().get(floorIndex).getName());
-
+            //View itemView = LayoutInflater.from(currentLinearLayout.getContext()).inflate(R.layout.floor_card, currentLinearLayout, false);
+            //currentLinearLayout.addView(itemView);
             final Context context = holder.context;
             final FloorItem floor = currentItem.getFloors().get(floorIndex);
 
@@ -90,48 +91,56 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
             System.out.println(currentSpace.getSpaceName());
             System.out.println(floor.getName());
 
+            Crowdedness status = floor.getCrowdedness();
+            ImageView img_status;
+
             cellular = floor.hasGoodCellular();
             noise = floor.isQuiet();
             food = floor.allowsFood();
             power = floor.hasOutlets();
 
+
+            View itemView = LayoutInflater.from(linearLayout_floorItems.getContext()).inflate(R.layout.floor_card, linearLayout_floorItems, false);
+            linearLayout_floorItems.addView(itemView);
+
+            TextView currentFloorTextView = itemView.findViewById(R.id.floor_name);
+            currentFloorTextView.setText(currentItem.getFloors().get(indexView).getName());
+
+
+            img_cellular = itemView.findViewById(R.id.cellular_status);
+            img_food = itemView.findViewById(R.id.food_status);
+            img_noise = itemView.findViewById(R.id.noise_status);
+            img_power = itemView.findViewById(R.id.power_status);
+            img_status = itemView.findViewById(R.id.floor_status);
+
+
+
             if (cellular) {
-                img_cellular = new ImageView(context2);
-                img_cellular.setId((int) 1);
-                img_cellular.setPadding(24, 24, 0, 24);
-                img_cellular.setBackgroundResource(R.drawable.ic_round_network_cell_24px);
-                img_cellular.setColorFilter(Color.parseColor("#2F80ED"));
-                linearLayout_floorItems.addView(img_cellular, index);
-                index++;
+                img_cellular.setAlpha(1.0f);
             }
 
             if (noise) {
-                img_noise = new ImageView(context2);
-                img_noise.setId((int) 2);
-                img_noise.setPadding(24, 24, 0, 24);
-                img_noise.setBackgroundResource(R.drawable.ic_round_volume_off_24px);
-                img_noise.setColorFilter(Color.parseColor("#2F80ED"));
-                linearLayout_floorItems.addView(img_noise, index);
-                index++;
+                img_noise.setAlpha(1.0f);
             }
 
             if (food) {
-                img_food = new ImageView(context2);
-                img_food.setId((int) 3);
-                img_food.setPadding(24, 24, 0, 24);
-                img_food.setBackgroundResource(R.drawable.ic_round_fastfood_24px);
-                img_food.setColorFilter(Color.parseColor("#2F80ED"));
-                linearLayout_floorItems.addView(img_food, index);
-                index++;
+                img_food.setAlpha(1.0f);
             }
 
             if (power) {
-                img_power = new ImageView(context2);
-                img_power.setId((int) 4);
-                img_power.setPadding(24, 24, 0, 24);
-                img_power.setBackgroundResource(R.drawable.ic_round_power_24px);
-                img_power.setColorFilter(Color.parseColor("#2F80ED"));
-                linearLayout_floorItems.addView(img_power, index);
+                img_power.setAlpha(1.0f);
+            }
+
+            if (status == Crowdedness.LOW) {
+                img_status.setImageResource(R.drawable.small_crowded_low);
+            }
+
+            if (status == Crowdedness.MEDIUM) {
+                img_status.setImageResource(R.drawable.small_crowded_medium);
+            }
+
+            if (status == Crowdedness.HIGH) {
+                img_status.setImageResource(R.drawable.small_crowded_high);
             }
 
         }
@@ -184,11 +193,12 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
 
                 TextView textView = new TextView(context);
                 textView.setId(0);
-                textView.setPadding(64, 24, 248, 24);
+                textView.setPadding(0, 0, 0, 0);
                 textView.setGravity(Gravity.LEFT);
 
                 LinearLayout.LayoutParams layoutParamsFloorItems = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 linearLayout_floorItems.addView(textView, 0);
+                textView.setVisibility(View.GONE);
 
                 LinearLayout.LayoutParams layoutParamsSpaceItems = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 linearLayout_spaceItems.addView(linearLayout_floorItems, layoutParamsSpaceItems);
