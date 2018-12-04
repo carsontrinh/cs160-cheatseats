@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +26,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -33,8 +37,8 @@ public class ScrollingActivity extends BaseActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<SpaceCardItem> spaces = new ArrayList<>();
-    private ArrayList<SpaceCardItem> filtered = new ArrayList<>();
     private Context mContext;
+    private EditText searchbar;
 
     // For filtering
     private boolean cellularFilterEnabled;
@@ -63,6 +67,27 @@ public class ScrollingActivity extends BaseActivity {
         recyclerView = findViewById(R.id.study_space_recycler);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        searchbar = findViewById(R.id.search_bar);
+        searchbar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterByText(searchbar.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        /*toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filterByText();
+            }
+        });*/
         fillSpaces();
         fillSpaceCards();
         myDialog = new Dialog(this);
@@ -429,8 +454,7 @@ public class ScrollingActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.menu_scrolling, menu);
-        return false;
+        return true;
     }
 
     @Override
@@ -438,15 +462,9 @@ public class ScrollingActivity extends BaseActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
-
 
     public void ShowPopup(View v) {
         ImageButton button_close;
@@ -536,6 +554,22 @@ public class ScrollingActivity extends BaseActivity {
                 R.anim.slide_up);
         myDialog.findViewById(R.id.popup_frame_layout).startAnimation(slide_up);
         myDialog.show();
+    }
+
+    public void filterByText (String text) {
+        String lowerCaseText = text.toLowerCase();
+        ArrayList<SpaceCardItem> filteredSpaces = new ArrayList<>();
+        for (SpaceCardItem space : spaces) {
+            String name = space.getSpaceName().toLowerCase();
+            if (name.contains(lowerCaseText)) {
+                filteredSpaces.add (space);
+            }
+        }
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        adapter = new SpaceCardAdapter(filteredSpaces);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
     }
 
     private void setFilteredspaces () {
