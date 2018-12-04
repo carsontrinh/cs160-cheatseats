@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -37,6 +39,7 @@ public class FloorViewActivity extends BaseActivity {
         button_ratingLow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                updateButtons(view);
                 DBHandler dbHandler = new DBHandler(FloorViewActivity.this);
                 Response data = new Response(0, libraryID, userID);
                 dbHandler.addHandler(data);
@@ -48,6 +51,7 @@ public class FloorViewActivity extends BaseActivity {
         button_ratingMedium.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                updateButtons(view);
                 DBHandler dbHandler = new DBHandler(FloorViewActivity.this);
                 Response data = new Response(1, libraryID, userID);
                 dbHandler.addHandler(data);
@@ -59,6 +63,7 @@ public class FloorViewActivity extends BaseActivity {
         button_ratingHigh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                updateButtons(view);
                 DBHandler dbHandler = new DBHandler(FloorViewActivity.this);
                 Response data = new Response(2, libraryID, userID);
                 dbHandler.addHandler(data);
@@ -128,36 +133,41 @@ public class FloorViewActivity extends BaseActivity {
         startActivity(browserIntent);
     }
 
-    public void selectAvailability(View v) {
-//        System.out.println(v.getId());
-//        this.setButtonOutlinesGrey();
-        Drawable unselected_border = getResources().getDrawable(R.drawable.selector_button_outline);
-        Drawable selected_border = getResources().getDrawable(R.drawable.button_border_selected);
+    private void updateButtons(View view) {
+        setButtonOutlinesGrey();
+        Drawable selected_border = null;
 
-        String id = v.getResources().getResourceEntryName(v.getId());
+        String id = view.getResources().getResourceEntryName(view.getId());
 
         if (id.equalsIgnoreCase("rate_low")) {
-            button_ratingMedium.setBackground(unselected_border);
-            button_ratingHigh.setBackground(unselected_border);
+            selected_border = getResources().getDrawable(R.drawable.button_border_selected_low);
         }
 
         else if (id.equalsIgnoreCase("rate_medium")) {
-            button_ratingLow.setBackground(unselected_border);
-            button_ratingHigh.setBackground(unselected_border);
+            selected_border = getResources().getDrawable(R.drawable.button_border_selected_medium);
         }
 
         else if (id.equalsIgnoreCase("rate_high")) {
-            button_ratingMedium.setBackground(unselected_border);
-            button_ratingLow.setBackground(unselected_border);
+            selected_border = getResources().getDrawable(R.drawable.button_border_selected_high);
         }
 
-        v.setBackground(selected_border);
+        view.setBackground(selected_border);
+//        toaster(view);
     }
 
-    public void setButtonOutlinesGrey() {
-        Drawable unselected_border = getResources().getDrawable(R.drawable.selector_button_outline);
-        button_ratingLow.setBackground(unselected_border);
-        button_ratingMedium.setBackground(unselected_border);
-        button_ratingHigh.setBackground(unselected_border);
+    private void setButtonOutlinesGrey() {
+        Drawable unselected_border_low = getResources().getDrawable(R.drawable.selector_button_outline_low);
+        Drawable unselected_border_medium = getResources().getDrawable(R.drawable.selector_button_outline_medium);
+        Drawable unselected_border_high = getResources().getDrawable(R.drawable.selector_button_outline_high);
+
+        button_ratingLow.setBackground(unselected_border_low);
+        button_ratingMedium.setBackground(unselected_border_medium);
+        button_ratingHigh.setBackground(unselected_border_high);
+    }
+
+    private void toaster(View view) {
+        Toast toast = Toast.makeText(view.getContext(), "       Your rating has been received.       ", Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.BOTTOM| Gravity.CENTER_HORIZONTAL, 0, 108);
+        toast.show();
     }
 }
