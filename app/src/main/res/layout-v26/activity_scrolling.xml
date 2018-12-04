@@ -69,6 +69,6 @@
         android:onClick="ShowPopup"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@drawable/baseline_filter_list_white_18dp" />
+        app:srcCompat="@drawable/ic_round_filter_list_24px" />
 
 </android.support.design.widget.CoordinatorLayout>
