@@ -1,18 +1,22 @@
 package com.cc.mad.cheatseats;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class FloorViewActivity extends BaseActivity {
 
     SpaceCardItem spaceCardItem;
     FloorItem floorItem;
-    ImageView rate_low, rate_medium, rate_high;
+    ImageButton button_ratingLow, button_ratingMedium, button_ratingHigh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,40 +27,43 @@ public class FloorViewActivity extends BaseActivity {
         floorItem = (FloorItem) intent.getSerializableExtra("FloorItem");
         spaceCardItem = floorItem.getSpaceCardItem();
 
-        rate_low = (ImageView) findViewById(R.id.rate_low);
+        button_ratingLow = findViewById(R.id.rate_low);
+        button_ratingMedium = findViewById(R.id.rate_medium);
+        button_ratingHigh = findViewById(R.id.rate_high);
+
         final TextView select_low = findViewById(R.id.select_low);
         final String userID = "TEMP";
         final String libraryID = String.valueOf(spaceCardItem.getSpaceName()) + String.valueOf(floorItem.getName());
-        rate_low.setOnClickListener(new View.OnClickListener() {
+        button_ratingLow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DBHandler dbHandler = new DBHandler(FloorViewActivity.this);
-                Response toAdd = new Response(0, libraryID, userID);
-                dbHandler.addHandler(toAdd);
-                select_low.setText(String.valueOf(dbHandler.getCount(0, libraryID)));
+                Response data = new Response(0, libraryID, userID);
+                dbHandler.addHandler(data);
+                String output = "Rated - Low, count: " + dbHandler.getCount(0, libraryID);
+                select_low.setText(output);
+            }
+        });
+
+        button_ratingMedium.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DBHandler dbHandler = new DBHandler(FloorViewActivity.this);
+                Response data = new Response(1, libraryID, userID);
+                dbHandler.addHandler(data);
+                String output = "Rated - Medium, count: " + dbHandler.getCount(1, libraryID);
+                select_low.setText(output);
                 dbHandler.close();
             }
         });
-        rate_medium = findViewById(R.id.rate_medium);
-        rate_medium.setOnClickListener(new View.OnClickListener() {
+        button_ratingHigh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DBHandler dbHandler = new DBHandler(FloorViewActivity.this);
-                Response toAdd = new Response(1, libraryID, userID);
-                dbHandler.addHandler(toAdd);
-                select_low.setText(String.valueOf(dbHandler.getCount(1, libraryID)));
-                dbHandler.close();
-            }
-        });
-        rate_high = findViewById(R.id.rate_high);
-        rate_high.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DBHandler dbHandler = new DBHandler(FloorViewActivity.this);
-                Response toAdd = new Response(2, libraryID, userID);
-                dbHandler.addHandler(toAdd);
-                select_low.setText(String.valueOf(dbHandler.getCount(2, libraryID)));
-                dbHandler.close();
+                Response data = new Response(2, libraryID, userID);
+                dbHandler.addHandler(data);
+                String output = "Rated - High, count: " + dbHandler.getCount(2, libraryID);
+                select_low.setText(output);
             }
         });
 
@@ -121,5 +128,36 @@ public class FloorViewActivity extends BaseActivity {
         startActivity(browserIntent);
     }
 
+    public void selectAvailability(View v) {
+//        System.out.println(v.getId());
+//        this.setButtonOutlinesGrey();
+        Drawable unselected_border = getResources().getDrawable(R.drawable.selector_button_outline);
+        Drawable selected_border = getResources().getDrawable(R.drawable.button_border_selected);
 
+        String id = v.getResources().getResourceEntryName(v.getId());
+
+        if (id.equalsIgnoreCase("rate_low")) {
+            button_ratingMedium.setBackground(unselected_border);
+            button_ratingHigh.setBackground(unselected_border);
+        }
+
+        else if (id.equalsIgnoreCase("rate_medium")) {
+            button_ratingLow.setBackground(unselected_border);
+            button_ratingHigh.setBackground(unselected_border);
+        }
+
+        else if (id.equalsIgnoreCase("rate_high")) {
+            button_ratingMedium.setBackground(unselected_border);
+            button_ratingLow.setBackground(unselected_border);
+        }
+
+        v.setBackground(selected_border);
+    }
+
+    public void setButtonOutlinesGrey() {
+        Drawable unselected_border = getResources().getDrawable(R.drawable.selector_button_outline);
+        button_ratingLow.setBackground(unselected_border);
+        button_ratingMedium.setBackground(unselected_border);
+        button_ratingHigh.setBackground(unselected_border);
+    }
 }
