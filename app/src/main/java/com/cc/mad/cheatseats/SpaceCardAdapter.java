@@ -5,10 +5,14 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,6 +23,7 @@ import java.util.ArrayList;
 public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.SpaceCardViewHolder> {
 
     private ArrayList<SpaceCardItem> cardList;
+    private ViewGroup recycler;
 
     public SpaceCardAdapter(ArrayList<SpaceCardItem> list) {
         cardList = list;
@@ -27,6 +32,7 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
     @NonNull
     @Override
     public SpaceCardViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i){
+        recycler = viewGroup;
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.space_card, viewGroup, false);
         return new SpaceCardViewHolder(v);
     }
@@ -210,17 +216,15 @@ public class SpaceCardAdapter extends RecyclerView.Adapter<SpaceCardAdapter.Spac
         public void onClick(View view) {
             System.out.println("CLICKED");
             ImageView arrow = view.findViewById(R.id.expand_collapse);
-            if (arrow.getRotation() == 0F) {
-                arrow.setRotation(180F);
-            } else {
-                arrow.setRotation(0F);
-            }
+            arrow.animate().rotation(arrow.getRotation() + 180).start();
             System.out.println(arrow.getRotation());
             textView_parentName = view.findViewById(R.id.space_name);
             if (textView_parentName != null && textView_parentName.getId() == R.id.space_name) {
                 if (linearLayout_spaceItems.getVisibility() == View.VISIBLE) {
+                    TransitionManager.beginDelayedTransition(recycler, new AutoTransition());
                     linearLayout_spaceItems.setVisibility(View.GONE);
                 } else {
+                    TransitionManager.beginDelayedTransition(recycler, new AutoTransition());
                     linearLayout_spaceItems.setVisibility(View.VISIBLE);
                 }
             }
