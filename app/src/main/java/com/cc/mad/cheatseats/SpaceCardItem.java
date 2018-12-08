@@ -7,6 +7,7 @@ public class SpaceCardItem implements Serializable {
 
     private String spaceName;
     private String spaceType;
+    private String hours;
     private ArrayList<FloorItem> floors;
     private double crowdedness;
 
@@ -42,4 +43,10 @@ public class SpaceCardItem implements Serializable {
     public void setFloors(ArrayList<FloorItem> floors) {
         this.floors = floors;
     }
+
+    public String getHours() {return hours;}
+
+    public void setHours(String hours) {this.hours = hours;}
+
+
 }

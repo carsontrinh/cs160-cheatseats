@@ -181,6 +181,7 @@ public class FloorViewActivity extends BaseActivity {
         textView_spaceName.setText(spaceCardItem.getSpaceName());
         textView_spaceType.setText(spaceCardItem.getSpaceType());
         textView_floorName.setText(floorItem.getName());
+        textView_hours.setText(spaceCardItem.getHours());
 
         button_popularTimes.setEnabled(false);  // Not yet implemented
 

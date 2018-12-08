@@ -1,12 +1,10 @@
 package com.cc.mad.cheatseats;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -28,7 +26,6 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.ToggleButton;
 
 public class ScrollingActivity extends BaseActivity {
@@ -112,20 +109,64 @@ public class ScrollingActivity extends BaseActivity {
         String libraryID;
         double status;
 
-        SpaceCardItem mainStacks, doe, moffitt, kresge, fsm;
+        SpaceCardItem mainStacks, doe, moffitt, kresge, fsm, anthropology, artHistory, bampfa, bancroft;
+        SpaceCardItem bioscience, business;
+        //SpaceCardItem career, ced, chemistry, data, earth, earthquake, eastasian;
+        //SpaceCardItem environmental, ethnic, graduate, graduatetheological, institute, law, lawrence;
+        //SpaceCardItem math, media, morrison, music, newspaper, northern, optometry, philosophy;
+        //SpaceCardItem physics, robbins, social, southeast, transportation;
         mainStacks = new SpaceCardItem("Main Stacks", "Library");
         doe = new SpaceCardItem("Doe", "Library");
         moffitt = new SpaceCardItem("Moffitt", "Library");
         kresge = new SpaceCardItem("Kresge", "Library");
         fsm = new SpaceCardItem("FSM", "Cafe");
+        anthropology = new SpaceCardItem("Anthropology", "Library");
+        artHistory = new SpaceCardItem("Art History/Classics", "Library");
+        bampfa = new SpaceCardItem("BAMPFA", "Library");
+        bancroft = new SpaceCardItem("Bancroft", "Library");
+        bioscience = new SpaceCardItem("Bioscience", "Library");
+        business = new SpaceCardItem("Business", "Library");
+        /*career = new SpaceCardItem("Career Counseling", "Library");
+        ced = new SpaceCardItem("CED Visual Resources", "Library");
+        chemistry = new SpaceCardItem("Chemistry", "Library");
+        data = new SpaceCardItem("Data", "Library");
+        earth = new SpaceCardItem("Earth Sciences & Map", "Library");
+        earthquake = new SpaceCardItem("Earthquake Engineering", "Library");
+        eastasian = new SpaceCardItem("East Asian", "Library");
+        environmental = new SpaceCardItem("Environmental Design", "Library");
+        ethnic = new SpaceCardItem("Ethnic Studies", "Library");
+        graduate = new SpaceCardItem("Graduate Services", "Library");
+        graduatetheological = new SpaceCardItem("Graduate Theological Union", "Library");
+        institute = new SpaceCardItem("Institute Governmental Studies", "Library");
+        law = new SpaceCardItem("Law", "Library");
+        lawrence = new SpaceCardItem("Lawrence Berkeley National", "Library");
+        math = new SpaceCardItem("Mathematics Statistics", "Library");
+        media = new SpaceCardItem("Media Resources", "Library");
+        morrison = new SpaceCardItem("Morrison", "Library");
+        music = new SpaceCardItem("Music", "Library");
+        newspaper = new SpaceCardItem("Newspapers & Microforms", "Library");
+        northern = new SpaceCardItem("Northern Regional", "Library");
+        optometry = new SpaceCardItem("Optometry", "Library");
+        philosophy = new SpaceCardItem("Philosophy", "Library");
+        physics = new SpaceCardItem("Physics-Astronomy", "Library");
+        robbins = new SpaceCardItem("Robbins Collection", "Library");
+        social = new SpaceCardItem("Social Research", "Library");
+        southeast = new SpaceCardItem("Southeast Asia", "Library");
+        transportation = new SpaceCardItem("Transportation Studies", "Library");*/
 
-        spaces.addAll(Arrays.asList(mainStacks, doe, moffitt, kresge, fsm));
+        spaces.addAll(Arrays.asList(mainStacks, doe, moffitt, kresge, fsm, anthropology, artHistory,
+                bampfa, bancroft, business, bioscience));
+                /*career, ced, chemistry, data, earth, earthquake, eastasian)); /*,
+                environmental, ethnic, graduate, graduatetheological, institute, law, lawrence, math, media,
+                morrison, music, newspaper, northern, optometry, philosophy, physics, robbins, social,
+                southeast, transportation));*/
 
         // ====================================
         // Main Stacks
         ArrayList<FloorItem> mainStacksFloors = new ArrayList<>(3);
         FloorItem mainStacksFloor1, mainStacksFloor2, mainStacksFloor3;
         mainStacks.setFloors(mainStacksFloors);
+        mainStacks.setHours("Hours: Wed 12am-12am");
         double mainStacksC = 0;
 
         mainStacksFloor1 = new FloorItem(mainStacks);
@@ -198,6 +239,7 @@ public class ScrollingActivity extends BaseActivity {
         ArrayList<FloorItem> doeFloors = new ArrayList<>(3);
         FloorItem doeFloor1, doeFloor2, doeFloor3;
         doe.setFloors(doeFloors);
+        doe.setHours("Hours: Wed 8am-9pm");
         double doeC = 0;
 
         doeFloor1 = new FloorItem(doe);
@@ -269,6 +311,7 @@ public class ScrollingActivity extends BaseActivity {
         ArrayList<FloorItem> moffitFloors = new ArrayList<>(4);
         FloorItem moffitFloor1, moffitFloor2, moffitFloor3, moffitFloor4;
         moffitt.setFloors(moffitFloors);
+        moffitt.setHours("Hours: Wed 12am-12am");
         double moffitC = 0;
 
         moffitFloor1 = new FloorItem(moffitt);
@@ -361,6 +404,7 @@ public class ScrollingActivity extends BaseActivity {
         ArrayList<FloorItem> kresgeFloors = new ArrayList<>(1);
         FloorItem kresgeFloor1, kresgeFloor2;
         kresge.setFloors(kresgeFloors);
+        kresge.setHours("Hours: Wed 9am-12am");
         double kresgeC = 0;
 
         kresgeFloor1 = new FloorItem(kresge);
@@ -413,6 +457,7 @@ public class ScrollingActivity extends BaseActivity {
         ArrayList<FloorItem> fsmFloors = new ArrayList<>(1);
         FloorItem fsmFloor1;
         fsm.setFloors(fsmFloors);
+        fsm.setHours("Hours: Wed 6:30am-2am");
 
         fsmFloor1 = new FloorItem(fsm);
         fsmFloor1.setName("Floor 1");
@@ -435,6 +480,290 @@ public class ScrollingActivity extends BaseActivity {
         fsm.setCrowdedness(status);
 
         fsmFloors.add(fsmFloor1);
+
+        // ====================================
+        // Anthropology
+        ArrayList<FloorItem> anthropologyFloors = new ArrayList<>(3);
+        FloorItem anthropologyFloor1;
+        anthropology.setFloors(anthropologyFloors);
+        anthropology.setHours("Hours: Wed 9am-8pm");
+
+        anthropologyFloor1 = new FloorItem(anthropology);
+        anthropologyFloor1.setName("Floor 1");
+        anthropologyFloor1.setHasGoodCellular(true);
+        anthropologyFloor1.setQuiet(true);
+        anthropologyFloor1.setAllowsFood(false);
+        anthropologyFloor1.setHasOutlets(true);
+        anthropologyFloor1.setLinkFloorPlan("");
+        anthropologyFloor1.setLinkBooking("");
+        anthropologyFloor1.setPhoneNumber("510-642-2400");
+        libraryID = String.valueOf(anthropology.getSpaceName()) + String.valueOf(anthropologyFloor1.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        anthropologyFloor1.setCrowdedness(status);
+        anthropology.setCrowdedness(status);
+
+        anthropologyFloors.add(anthropologyFloor1);
+
+        // ====================================
+        // Art History/Classic
+        ArrayList<FloorItem> artHistoryFloors = new ArrayList<>(3);
+        FloorItem artHistoryFloor1;
+        artHistory.setFloors(artHistoryFloors);
+        artHistory.setHours("Hours: Wed 9am-9pm");
+
+        artHistoryFloor1 = new FloorItem(artHistory);
+        artHistoryFloor1.setName("Floor 1");
+        artHistoryFloor1.setHasGoodCellular(true);
+        artHistoryFloor1.setQuiet(true);
+        artHistoryFloor1.setAllowsFood(false);
+        artHistoryFloor1.setHasOutlets(true);
+        artHistoryFloor1.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/doe_3.pdf");
+        artHistoryFloor1.setLinkBooking("");
+        artHistoryFloor1.setPhoneNumber("510-642-7361");
+        libraryID = String.valueOf(artHistory.getSpaceName()) + String.valueOf(artHistoryFloor1.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        artHistoryFloor1.setCrowdedness(status);
+        artHistory.setCrowdedness(status);
+
+        artHistoryFloors.add(artHistoryFloor1);
+
+        // ====================================
+        // BAMPFA
+        ArrayList<FloorItem> bampfaFloors = new ArrayList<>(3);
+        FloorItem bampfaFloor1, bampfaFloor2, bampfaFloor3;
+        bampfa.setFloors(bampfaFloors);
+        bampfa.setHours("Hours: Wed 1pm-5pm");
+        double bampfaC = 0;
+
+        bampfaFloor1 = new FloorItem(bampfa);
+        bampfaFloor1.setName("Ground Level");
+        bampfaFloor1.setHasGoodCellular(true);
+        bampfaFloor1.setQuiet(true);
+        bampfaFloor1.setAllowsFood(false);
+        bampfaFloor1.setHasOutlets(false);
+        bampfaFloor1.setLinkFloorPlan("https://www.archdaily.com/779090/uc-berkeley-art-" +
+                "museum-and-pacific-film-archive-diller-scofidio-plus-renfro/5674a6f0e58ece4176000071-" +
+                "uc-berkeley-art-museum-and-pacific-film-archive-diller-scofidio-plus-renfro-ground-floor-plan");
+        bampfaFloor1.setLinkBooking("https://bampfa.org/about/facility-rental");
+        bampfaFloor1.setPhoneNumber("510-642-1437");
+        libraryID = String.valueOf(bampfa.getSpaceName()) + String.valueOf(bampfaFloor1.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        bampfaFloor1.setCrowdedness(status);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        bampfaC += status;
+
+        bampfaFloor2 = new FloorItem(bampfa);
+        bampfaFloor2.setName("Lower Floor");
+        bampfaFloor2.setHasGoodCellular(true);
+        bampfaFloor2.setQuiet(false);
+        bampfaFloor2.setAllowsFood(false);
+        bampfaFloor2.setHasOutlets(false);
+        bampfaFloor2.setCrowdedness(90);
+        bampfaFloor2.setLinkFloorPlan("https://www.archdaily.com/779090/uc-berkeley-art" +
+                "-museum-and-pacific-film-archive-diller-scofidio-plus-renfro/" +
+                "5674a700e58ece4176000072-uc-berkeley-art-museum-and-pacific-film-archive" +
+                "-diller-scofidio-plus-renfro-lower-floor-plan");
+        bampfaFloor2.setLinkBooking("https://bampfa.org/about/facility-rental");
+        bampfaFloor2.setPhoneNumber("510-642-1437");
+        libraryID = String.valueOf(bampfa.getSpaceName()) + String.valueOf(bampfaFloor2.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        bampfaFloor2.setCrowdedness(status);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        bampfaC += status;
+
+        bampfaFloor3 = new FloorItem(bampfa);
+        bampfaFloor3.setName("Upper Floor");
+        bampfaFloor3.setHasGoodCellular(true);
+        bampfaFloor3.setQuiet(false);
+        bampfaFloor3.setAllowsFood(true);
+        bampfaFloor3.setHasOutlets(true);
+        bampfaFloor3.setCrowdedness(90);
+        bampfaFloor3.setLinkFloorPlan("https://www.archdaily.com/779090/uc-berkeley-art" +
+                "-museum-and-pacific-film-archive-diller-scofidio-plus-renfro/" +
+                "5674a70ee58ece4176000073-uc-berkeley-art-museum-and-pacific-film-archive" +
+                "-diller-scofidio-plus-renfro-second-floor-plan");
+        bampfaFloor3.setLinkBooking("https://bampfa.org/about/facility-rental");
+        bampfaFloor3.setPhoneNumber("510-642-1437");
+        libraryID = String.valueOf(bampfa.getSpaceName()) + String.valueOf(bampfaFloor3.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        bampfaFloor3.setCrowdedness(status);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        bampfaC += status;
+
+        bampfaFloors.add(bampfaFloor1);
+        bampfaFloors.add(bampfaFloor2);
+        bampfaFloors.add(bampfaFloor3);
+
+        bampfaC /= 3;
+
+        bampfa.setCrowdedness(bampfaC);
+
+        // ====================================
+        // Bancroft
+        ArrayList<FloorItem> bancroftFloors = new ArrayList<>(3);
+        FloorItem bancroftFloor1;
+        bancroft.setFloors(bancroftFloors);
+        bancroft.setHours("Hours: Wed 10am-5pm");
+
+        bancroftFloor1 = new FloorItem(bancroft);
+        bancroftFloor1.setName("Floor 1");
+        bancroftFloor1.setHasGoodCellular(true);
+        bancroftFloor1.setQuiet(true);
+        bancroftFloor1.setAllowsFood(false);
+        bancroftFloor1.setHasOutlets(true);
+        bancroftFloor1.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/doe_2.pdf");
+        bancroftFloor1.setLinkBooking("");
+        bancroftFloor1.setPhoneNumber("510-642-6481");
+        libraryID = String.valueOf(bancroft.getSpaceName()) + String.valueOf(bancroftFloor1.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        bancroftFloor1.setCrowdedness(status);
+        bancroft.setCrowdedness(status);
+
+        bancroftFloors.add(bancroftFloor1);
+
+        // ====================================
+        // Bioscience
+        ArrayList<FloorItem> bioscienceFloors = new ArrayList<>(3);
+        FloorItem bioscienceFloor1, bioscienceFloor2, bioscienceFloor3;
+        bioscience.setFloors(bioscienceFloors);
+        bioscience.setHours("Hours: Wed 9am-10pm");
+        double bioscienceC = 0;
+
+        bioscienceFloor1 = new FloorItem(bioscience);
+        bioscienceFloor1.setName("Entry Floor");
+        bioscienceFloor1.setHasGoodCellular(true);
+        bioscienceFloor1.setQuiet(false);
+        bioscienceFloor1.setAllowsFood(false);
+        bioscienceFloor1.setHasOutlets(true);
+        bioscienceFloor1.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/biosplan.pdf");
+        bioscienceFloor1.setLinkBooking("https://bampfa.org/about/facility-rental");
+        bioscienceFloor1.setPhoneNumber("510-642-2531");
+        libraryID = String.valueOf(bioscience.getSpaceName()) + String.valueOf(bioscienceFloor1.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        bioscienceFloor1.setCrowdedness(status);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        bioscienceC += status;
+
+        bioscienceFloor2 = new FloorItem(bioscience);
+        bioscienceFloor2.setName("Lower Mezzanine");
+        bioscienceFloor2.setHasGoodCellular(true);
+        bioscienceFloor2.setQuiet(true);
+        bioscienceFloor2.setAllowsFood(false);
+        bioscienceFloor2.setHasOutlets(true);
+        bioscienceFloor2.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/biosplan.pdf");
+        bioscienceFloor2.setLinkBooking("https://bampfa.org/about/facility-rental");
+        bioscienceFloor2.setPhoneNumber("510-642-2531");
+        libraryID = String.valueOf(bioscience.getSpaceName()) + String.valueOf(bioscienceFloor2.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        bioscienceFloor2.setCrowdedness(status);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        bioscienceC += status;
+
+        bioscienceFloor3 = new FloorItem(bioscience);
+        bioscienceFloor3.setName("Upper Mezzanine");
+        bioscienceFloor3.setHasGoodCellular(true);
+        bioscienceFloor3.setQuiet(true);
+        bioscienceFloor3.setAllowsFood(false);
+        bioscienceFloor3.setHasOutlets(true);
+        bioscienceFloor3.setLinkFloorPlan("http://www.lib.berkeley.edu/sites/default/files/biosplan.pdf");
+        bioscienceFloor3.setLinkBooking("https://bampfa.org/about/facility-rental");
+        bioscienceFloor3.setPhoneNumber("510-642-2531");
+        libraryID = String.valueOf(bioscience.getSpaceName()) + String.valueOf(bioscienceFloor3.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        bioscienceFloor3.setCrowdedness(status);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        bioscienceC += status;
+
+        bioscienceFloors.add(bioscienceFloor1);
+        bioscienceFloors.add(bioscienceFloor2);
+        bioscienceFloors.add(bioscienceFloor3);
+
+        bioscienceC /= 3;
+
+        bioscience.setCrowdedness(bioscienceC);
+
+        // ====================================
+        // Business
+        ArrayList<FloorItem> businessFloors = new ArrayList<>(1);
+        FloorItem businessFloor1, businessFloor2;
+        business.setFloors(businessFloors);
+        business.setHours("Hours: Wed 9am-10pm");
+        double businessC = 0;
+
+        businessFloor1 = new FloorItem(business);
+        businessFloor1.setName("Level 2");
+        businessFloor1.setHasGoodCellular(true);
+        businessFloor1.setQuiet(true);
+        businessFloor1.setAllowsFood(false);
+        businessFloor1.setHasOutlets(true);
+        businessFloor1.setLinkFloorPlan("http://www.haas.berkeley.edu/facilities/campus/Level2.html");
+        businessFloor1.setLinkBooking("https://ems.haas.berkeley.edu/");
+        businessFloor1.setPhoneNumber("510-642-0370");
+        libraryID = String.valueOf(business.getSpaceName()) + String.valueOf(businessFloor1.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        businessFloor1.setCrowdedness(status);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        businessC += status;
+
+        businessFloor2 = new FloorItem(business);
+        businessFloor2.setName("Level 3");
+        businessFloor2.setHasGoodCellular(true);
+        businessFloor2.setQuiet(true);
+        businessFloor2.setAllowsFood(false);
+        businessFloor2.setHasOutlets(true);
+        businessFloor2.setCrowdedness(90);
+        businessFloor2.setLinkFloorPlan("http://www.haas.berkeley.edu/facilities/campus/Level3.html");
+        businessFloor2.setLinkBooking("https://ems.haas.berkeley.edu/");
+        businessFloor2.setPhoneNumber("510-642-0370");
+        libraryID = String.valueOf(business.getSpaceName()) + String.valueOf(businessFloor2.getName());
+        status = dbHandler.getCount(1, libraryID) * 50  + dbHandler.getCount(2, libraryID) * 100;
+        status = status/dbHandler.getTotalCount(libraryID);
+        businessFloor2.setCrowdedness(status);
+        if(Double.isNaN(status)){
+            status = 0;
+        }
+        businessC += status;
+
+        businessFloors.add(businessFloor1);
+        businessFloors.add(businessFloor2);
+
+        businessC /= 2;
+
+        business.setCrowdedness(businessC);
+
     }
 
     private void fillSpaceCards() {
